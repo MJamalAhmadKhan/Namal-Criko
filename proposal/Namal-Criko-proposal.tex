@@ -1,1 +1,211 @@
+\documentclass[12pt,a4paper]{report}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{longtable}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{tocloft}
+
+\setstretch{1.2}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+    pdfauthor={Your Group},
+    pdftitle={Software Engineering Project Proposal}
+}
+
+% ---------------- HEADER / FOOTER ----------------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{CSC-225 – Software Engineering}
+\fancyhead[R]{Project Proposal}
+\fancyfoot[C]{\thepage}
+
+% ---------------- TITLE FORMAT ----------------
+\titleformat{\chapter}[block]{\Huge\bfseries}{\thechapter.}{0.5em}{}
+\titleformat{\section}[block]{\Large\bfseries}{\thesection.}{0.5em}{}
+
+% ---------------- DOCUMENT START ----------------
+\begin{document}
+
+% ---------- TITLE PAGE ----------
+\begin{titlepage}
+    \centering
+    \includegraphics[width=4cm]{Namal logo.png}\par\vspace{1cm}
+    {\Huge \textbf{Project Proposal}}\\[0.5cm]
+    {\Large CSC-225 – Software Engineering}\\[0.3cm]
+    {\Large Department of Computer Science}\\[0.3cm]
+    {\Large Namal University, Mianwali}\\[1cm]
+    {\LARGE \textbf{Project Title:} Namal Criko}\\[1cm]
+
+    \textbf{Team Members:}\\[0.2cm]
+    \begin{tabular}{l l l}
+        Name & Roll No. & Email \\ \hline
+        M.Jamal Ahmad Khan & Num-Bscs-2024-51& bscs24f51@namal.edu.pk\\
+        Qazi Muhammad Auon Farooqi& Num-Bscs-2024-64& bscs24f64@namal.edu.pk\\
+        Breera Ijaz& Num-Bscs-2024-20& bscs24f20@namal.edu.pk\\
+    \end{tabular}\\[1cm]
+
+    \textbf{Submission Date:} November 9, 2025\\[0.5cm]
+
+    \vfill
+    \textbf{Instructor:} Asia Batool\\[0.2cm]
+    \textbf{Semester:} Fall 2025\\[2cm]
+\end{titlepage}
+
+% ---------- REQUIREMENT PROVIDER AGREEMENT ----------
+\chapter*{Requirement Provider Agreement}
+\addcontentsline{toc}{chapter}{Requirement Provider Agreement}
+
+This agreement is made between the student team and the Requirement Provider (RP) to ensure collaboration between them during the development of the project.\\[1em]
+
+\noindent\textbf{Requirement Provider Details:}\\
+Name: Mr.. Ammar Ahmad Khan\\
+Designation: Professor Namal University Mianwali\\
+Email: ammar.ahmad@namal.edu.pk \\
+
+\noindent\textbf{Student Representative Details:}\\
+Name: M.Jamal Ahmad Khan\\
+Email: bscs24f51@namal.edu.pk \\
+
+\noindent\textbf{Agreement Terms:}
+\begin{itemize}
+    \item The RP agrees to act as a client throughout the duration of the project.
+    \item The student team agrees to communicate regularly and seek RP’s feedback.
+    \item Meetings will occur once every two weeks, depending on the availability of both parties (virtual/physical).
+    \item All discussions will be recorded in the Meeting Minutes document.
+\end{itemize}
+
+\vspace{0.5cm}
+\noindent\textbf{Date:} 3rd November 2025
+
+\vspace{1cm}
+
+% ---------- DIGITAL SIGNATURES ----------
+\begin{minipage}{0.45\textwidth}
+    \centering
+    \includegraphics[width=4cm]{st.png} % student signature file
+    \rule{6cm}{0.4pt}\\
+    Student Representative
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+    \centering
+    \includegraphics[width=4cm]{sir ammar sign.jpg}\\ % requirement provider signature file
+    \rule{6cm}{0.4pt}\\
+    Requirement Provider
+\end{minipage}
+\vspace{2cm}
+% ---------- TABLE OF CONTENTS ----------
+\tableofcontents
+\newpage
+% ---------- INTRODUCTION ----------
+\chapter{Introduction}
+\textbf{Cricket} is the most popular sport played all over the world. It requires physical skills, continuous practice, and an awareness of techniques. Traditional training systems require a physical setup, coaches, and some other resources that often limit players to practice effectively.
+
+With the advancement of technology, the sports training system has been changed to simulation and other tools. The purpose of this project, \textbf{Namal Criko}, is to provide a platform where players can learn different types of batting and bowling techniques by simulations.
+
+
+Through this, players can experience different styles of bowling such as spin, fast, and slow deliveries, and also batting techniques (drive, sweep, and defensive shots, etc.) in a simulated environment.The main goal of this system is to provide knowledge of cricket techniques in a controlled and engaging environment. The system will provide training aid, especially to students and cricket lovers at \textbf{Namal University} who wish to improve their cricket knowledge and techniques using technology.
+
+
+
+
+% ---------- PROBLEM STATEMENT ----------
+\chapter{Problem Statement}
+In Namal, many students play cricket regularly, yet there isn’t any proper system or structured guide to help them learn or practice the correct techniques of batting, bowling, and fielding. Most players rely on personal experience or random practice, which limits their learning. As of now, there is no digital or visual platform that explains how each technique should actually be performed. Because of this, learners find it difficult to understand the correct movements, timing, and form. Therefore, there is a need for an application that can simulate different cricket techniques and make learning easier and more effective.
+
+% ---------- PROJECT OBJECTIVES ----------
+\chapter{Project Objectives}
+The objectives of the project are:
+\begin{enumerate}[label=\arabic*.]
+    \item A user-friendly app that would show how various cricket techniques are executed, such as batting and bowling.
+
+
+    \item To help learners understand the right body movements and timing through visual animations.
+
+
+    \item Allow users to select any given shot or delivery for instance, a sweep shot or a Yorker-and watch step-by-step how it is done.
+
+
+    \item Making the learning of cricket more interesting and fun with the help of computer-based simulations, rather than just reading or watching videos.
+
+
+    \item To provide students at Namal with an easy way to learn professional cricket skills and techniques.
+
+    
+    \item To connect technology with learning in sports and help users understand how cricket techniques actually work.
+\end{enumerate}
+
+% ---------- STAKEHOLDER IDENTIFICATION ----------
+\chapter{Stakeholder Identification}
+\begin{longtable}{|p{4cm}|p{10cm}|}
+\hline
+\textbf{Stakeholder} & \textbf{Role / Relation to System} \\ \hline
+Requirement Provider & Acts as the client; provides requirements and feedback. \\ \hline
+Student and Faculty & they are end users responsible to perform system operation. \\ \hline
+Administrator & Responsible for managing user accounts, maintaining system functionality, ensuring data security, and implementing necessary updates or modifications.\\ \hline
+\hline
+Developer & Design,develop,maintain system.Responsible for implementing new features and removing technical errors and improve system performance\\ \hline
+\end{longtable}
+
+% ---------- SOFTWARE DEVELOPMENT METHODOLOGY ----------
+\chapter{Software Development Methodology}
+We have adopted the \textbf{Agile (Scrum)} methodology for the development of our project.  
+The Agile approach enables iterative progress through short development cycles (sprints), allowing continuous collaboration with the Requirement Provider (RP) and quick adaptation to feedback or changing requirements.
+
+\textbf{Schedule for One-Year Timeline (Dec 2025 – Nov 2026):}
+
+\begin{longtable}{|p{3cm}|p{10cm}|}
+\hline
+\textbf{Phase} & \textbf{Duration / Description} \\ \hline
+Requirement gathering and analysis & Dec 2025 – Jan 2026: Conduct meetings with the RP to gather and document detailed functional and non-functional requirements. Define user stories and product backlog items. \\ \hline
+System Design & Feb – Mar 2026: Prepare architectural, database, and interface design documents. Develop prototypes for early feedback from stakeholders. \\ \hline
+Implementation (Sprint Cycles) & Apr – Jul 2026: Perform iterative development through multiple Scrum sprints. Each sprint includes coding, testing, and review. Deliver incremental functional modules after every sprint. \\ \hline
+Testing and Quality Assurance & Aug – Sep 2026: Conduct comprehensive testing, including unit, integration, and user acceptance testing. Address identified issues and refine the system based on feedback. \\ \hline
+Deployment and Review & Oct 2026: Deploy the final version of the system. Gather feedback from the Requirement Provider and end-users for final validation. \\ \hline
+Maintenance and Support & Nov 2026 onward: Monitor system performance, fix minor bugs, and implement enhancements based on user experience and feedback. \\ \hline
+\end{longtable}
+
+
+% ---------- TOOLS AND TECHNOLOGIES ----------
+\chapter{Tools and Technologies}
+\begin{itemize}
+    \item \textbf{Frontend:} ReactJS / Figma (for prototype design)
+    \item \textbf{Backend:} Node.js / Python 
+    \item \textbf{Database:} MySQL / Firebase/SQLite
+    \item \textbf{Version Control:} GitHub
+    \item \textbf{Project Management:} Google Sheets/Zoom
+    \item \textbf{Project Management:} Blender
+\end{itemize}
+
+% ---------- REFERENCES ----------
+\chapter{References}
+\begin{enumerate}
+    \item B. V. de Carvalho and C. H. P. Mello, “Scrum agile product development method – literature review, analysis and classification,” \textit{Product: Management \& Development}, vol. 9, no. 1, pp. 39–46, Jun. 2011.
+    
+    \item N. Herdika and E. K. Budiardjo, “Variability and commonality requirement specification on agile software development: Scrum, XP, Lean, and Kanban,” in \textit{Proc. 3rd Int. Conf. on Computer and Informatics Engineering (IC2IE)}, 2020, pp. 323–329.
+    
+    \item “React Documentation,” React Official Website. [Online]. Available: \url{https://react.dev/}
+    
+    \item “Node.js Documentation,” Node.js Official Website. [Online]. Available: \url{https://nodejs.org/en/}
+    
+    \item “Firebase Documentation,” Google Firebase. [Online]. Available: \url{https://firebase.google.com/}
+\end{enumerate}
+
+
+\section*{AI Usage Log}
+Prompts and tools used for idea generation:
+\begin{itemize}
+    \item Chat GPT query: “Write a sample software engineering project proposal template in LaTeX along with a RP student General Agreement”
+    \item Agreement sample generation
+    \item  Google Gemini for grammar and spell check
+    \item  Chat GPT for tools selection. 
+\end{itemize}
+
+\end{document}
 
