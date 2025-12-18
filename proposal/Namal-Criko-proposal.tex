@@ -53,7 +53,7 @@
     \textbf{Submission Date:} November 9, 2025\\[0.5cm]
 
     \vfill
-    \textbf{Instructor:} Asia Batool\\[0.2cm]
+    \textbf{Instructor:} Asiya Batool\\[0.2cm]
     \textbf{Semester:} Fall 2025\\[2cm]
 \end{titlepage}
 
@@ -146,7 +146,7 @@ s
 \hline
 \textbf{Stakeholder} & \textbf{Role / Relation to System} \\ \hline
 Requirement Provider & Acts as the client; provides requirements and feedback. \\ \hline
-Student and Faculty & they are end users responsible to perform system operation. \\ \hline
+Players & They are end users responsible to perform system operation. \\ \hline
 Administrator & Responsible for managing user accounts, maintaining system functionality, ensuring data security, and implementing necessary updates or modifications.\\ \hline
 \hline
 Developer & Design,develop,maintain system.Responsible for implementing new features and removing technical errors and improve system performance\\ \hline
@@ -154,88 +154,81 @@ Developer & Design,develop,maintain system.Responsible for implementing new feat
 
 
 
+
+% ---------- TOOLS AND TECHNOLOGIES ---------
 \section{Software Development Methodology}
-We have adopted the \textbf{Agile (Scrum)} methodology for the development of our project. 
-Scrum divides the development process into short, fixed-length iterations called 
-\textbf{sprints}, where each sprint includes requirement refinement, design, coding, testing, 
-and review. This iterative approach allows continuous collaboration with the Requirement 
-Provider (RP) and rapid adaptation to feedback.
+We have adopted the \textbf{Agile (Scrum)} methodology for the development of \textbf{Namal Criko}. By utilizing 2-week sprints, we ensure that the complex 3D web simulations and administrative authorization workflows are developed iteratively with continuous feedback from the Requirement Provider (RP).
 
 \textbf{Scrum-Based One-Year Development Plan (Dec 2025 – Nov 2026)}
 
-\begin{longtable}{|p{3cm}|p{10cm}|}
+\begin{longtable}{|p{3.5cm}|p{9.5cm}|}
 \hline
 \textbf{Phase / Sprint} & \textbf{Scrum-Aligned Description} \\ \hline
 
-Product Backlog Creation & 
-Dec 2025: Conduct meetings with the RP to gather requirements, define epics and user stories, prioritize the product backlog, and set acceptance criteria. 
+Product Backlog Creation  & 
+Dec 2025: Collaborative sessions with the RP to define User Stories for the Player and Admin portals. Priority is given to defining the "Admin Approval" logic and 3D simulation sub-categories (Fast/Slow bowling). 
 \\ \hline
 
-Sprint 0 (Setup Sprint) & 
-Late Dec – Early Jan: Project environment setup, Unity project initialization, Firebase backend setup, folder structure creation, initial architecture planning, and UI wireframe creation. 
+Sprint 0: Setup  & 
+Late Dec – Early Jan: Initializing the web environment using \textbf{React.js} and \textbf{Three.js}. Setting up the \textbf{Firebase Web SDK} for authentication and designing the dual-dashboard UI wireframes in Figma. 
 \\ \hline
 
-Sprints 1–3 (Core Simulation Mechanics) & 
-Jan – Mar 2026: Three 2-week sprints. Implement basic player models, core batting and bowling animations, initial ball physics, and basic UI navigation. Each sprint includes planning, development, testing, review, and retrospective. 
+Sprints 1–3: Core Web Simulations & 
+Jan – Mar 2026: Developing the 3D browser environment. Implementing basic player meshes, batting/bowling animations in Three.js, and ensuring the "Simulation + Written Description" layout is functional.
 \\ \hline
 
-Sprints 4–6 (Advanced Simulation Features) & 
-Apr – Jun 2026: Add multiple bowling variations (fast, spin, swing), advanced batting shots, refine physics, improve animations, optimize movements, and incorporate RP feedback after each sprint review. 
+Sprints 4–6: Advanced Mechanics  & 
+Apr – Jun 2026: Expansion of simulation categories to include Fast, Swing, and Spin bowling variations. Implementing advanced batting styles and refining ball physics for a realistic web experience.
 \\ \hline
 
-Sprints 7–8 (User System \& Tracking) & 
-Jul – Aug 2026: Implement Firebase authentication, user profile system, session tracking, performance analytics, and cloud storage. Testing and feedback integration occur after every sprint. 
+Sprints 7–8: Admin \& User Systems  & 
+Jul – Aug 2026: \textbf{Critical Phase:} Implementation of the \textbf{Admin Authorization Module} (Allow/Approve users). Development of the Player Performance Tracker (Run Rate, Matches) and the Admin-controlled Ad Management system. 
 \\ \hline
 
-Sprints 9–10 (Polish \& Optimization) & 
-Sep – Oct 2026: UI polishing, performance optimization for mobile devices, bug fixing, model improvements, UI/UX refinement, and preparation of the release candidate. 
+Sprints 9–10: Web Optimization  & 
+Sep – Oct 2026: Optimizing 3D assets for low-latency web loading. Integrating the Help Section/Support Desk and conducting rigorous cross-browser testing (Chrome, Safari, Edge).
 \\ \hline
 
-Final Sprint (Release Sprint) & 
-Nov 2026: Final system testing, user acceptance testing with the RP, preparation of documentation, final build creation, and deployment. 
+Final Sprint: Deployment  & 
+Nov 2026: Final User Acceptance Testing (UAT) focusing on the Admin workflow and simulation accuracy. Deployment of the web application via Firebase Hosting or Vercel. 
 \\ \hline
 
 \end{longtable}
-
-
-% ---------- TOOLS AND TECHNOLOGIES ----------
 \section{Tools and Technologies}
-For the development of \textbf{Namal Criko}, which is a mobile-based cricket training and simulation application, the following tools and technologies will be used. These tools are selected based on the requirements of 3D simulation, mobile performance and backend support.
-
+For the development of \textbf{Namal Criko}, which is a web-based cricket training and simulation application, the following tools and technologies will be used. These tools are selected based on the requirements of 3D web rendering, browser performance, and secure administrative backend support.
 
 \begin{itemize}
 
+% Web Framework
+\item \textbf{Web Framework: React.js} \\
+React.js will be used to develop the core web application, providing a responsive and component-based architecture for the separate Player and Admin dashboards.
 
-% Unity for Mobile Simulation
-\item \textbf{Mobile Development / Simulation Engine: Unity 3D} \\
-Unity provides a powerful physics engine, animation system, and mobile export support for both Android and iOS. It is ideal for creating cricket simulations such as ball trajectories, bowling animations, and batting mechanics.
-
+% Three.js for Web Simulation
+\item \textbf{Web Simulation Engine: Three.js (WebGL)} \\
+To facilitate 3D simulations within a browser environment, Three.js will be utilized. This allows for the rendering of complex ball trajectories and player mechanics without requiring users to download additional software.
 
 % Blender for 3D modeling
 \item \textbf{3D Modeling and Animation: Blender} \\
-Blender will be used to design and animate 3D cricket players, bat, ball, stadiums, and different bowling/batting styles.
+Blender will be used to design and animate 3D cricket assets, including players, stadiums, and equipment. These models will be exported in glTF/GLB formats for optimized web loading.
 
-% Firebase backend
-\item \textbf{Backend and Database: Firebase (Authentication, Firestore, Storage)} \\
-Firebase ensures real-time synchronization, secure login, cloud-based data storage, and scalability suitable for a mobile app.
-
+% Backend and Database
+\item \textbf{Backend and Database: Node.js and MongoDB} \\
+The backend will handle the Admin authorization logic, storage of player performance metrics (Run Rate, Matches), and the help-desk ticketing system.
 
 % UI Design
 \item \textbf{UI/UX Design: Figma} \\
-Figma will be used to design mobile app screens, user flows, menus, and interface components.
-
+Figma will be used to design the web interfaces, ensuring a seamless user experience for both the learning modules and the administrative control panels.
 
 % Version Control
 \item \textbf{Version Control: GitHub} \\
-GitHub will be used for source code management, collaboration, issue tracking, and version maintenance.
-
+GitHub will be used for source code management, collaborative development, and maintaining project versions throughout the semester.
 
 % Project Management
 \item \textbf{Project Management: Zoom / Google Sheets} \\
-These tools will help track tasks, sprints, documentation, and weekly progress under the Agile Scrum methodology.
-
+These tools will be used for coordinating team meetings and tracking task progress under the Agile Scrum methodology.
 
 \end{itemize}
+
 
 % ---------- REFERENCES ----------
 \section{References}
