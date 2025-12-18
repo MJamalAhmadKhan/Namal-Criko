@@ -1,1 +1,1 @@
-This folder contain all meeting videos and recording 
+This folder contain all meeting videos pictures and recording 
