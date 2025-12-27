@@ -1,0 +1,205 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{tocloft}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage{array}
+\usepackage{longtable}
+
+\titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalfont\normalsize\bfseries}{\thesubsubsection}{1em}{}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textit{Namal Cricko - SRS Document}}
+\fancyfoot[C]{\thepage}
+
+\begin{document}
+
+% ========== Title Page ==========
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    
+    {\Huge \textbf{Namal Cricko}} \\
+    \vspace{0.5cm}
+    {\Large \textbf{A Cricket Club Management Platform}} \\
+    
+    \vspace{1.5cm}
+    
+    \textbf{Semester Project Proposal} \\
+    \textbf{Session 2024-2025} \\
+    
+    \vspace{1cm}
+    
+    A project submitted in partial fulfilment of the requirements for the completion of \\
+    \textbf{Software Engineering} course \\
+    
+    \vspace{2cm}
+    
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{No.} & \textbf{Name} & \textbf{Roll Number} \\
+        \hline
+        1 & Jamal Ahmad Khan & NUM-BSCS-2024-51 \\
+        \hline
+        2 & Breera Ijaz & NUM-BSCS-2024-20 \\
+        \hline
+        3 & Aoun Farooqi & NUM-BSCS-2024-64 \\
+        \hline
+    \end{tabular}
+    
+    \vspace{2cm}
+    
+    \textbf{Department of Computer Science} \\
+    \textbf{Namal University Mianwali} \\
+    \textbf{\today}
+    
+\end{titlepage}
+
+% ========== Table of Contents ==========
+\tableofcontents
+\newpage
+
+% ========== 1 Introduction ==========
+\section{Introduction}
+\subsection{Purpose}
+\subsubsection{Overview of the Document}
+\subsubsection{Purpose of the SRS}
+\subsubsection{Intended Audience}
+
+\subsection{Scope}
+\subsubsection{Product Identification}
+\subsubsection{Product Features}
+\subsubsection{Application of the Software}
+\subsubsection{Goals and Benefits}
+
+\subsection{Overview}
+\subsubsection{Document Structure}
+\subsubsection{Organization of the Document}
+
+\subsection{Definitions, Acronyms, and Abbreviations}
+\subsection{References}
+\subsubsection{Standards}
+\subsubsection{Technical Documentation}
+\subsubsection{Development Tools}
+
+% ========== 2 General Description ==========
+\section{General Description}
+\subsection{Product Perspective}
+\subsubsection{System Positioning and Independence}
+\subsubsection{Contextual Relationships and Interfaces}
+\subsubsection{Operational Constraints}
+
+\subsection{Product Functions}
+\subsection{User Characteristics}
+\subsubsection{Educational Level and Background}
+\subsubsection{Experience Levels}
+\subsubsection{Accessibility Considerations}
+
+\subsection{General Constraints}
+\subsubsection{Regulatory Policies}
+\subsubsection{Hardware Limitations}
+\subsubsection{Interfaces to Other Applications}
+\subsubsection{Parallel Operation}
+\subsubsection{Audit Functions}
+\subsubsection{Control Functions}
+\subsubsection{Higher-Order Language Requirements}
+\subsubsection{Signal Handshake Protocols}
+\subsubsection{Reliability Requirements}
+\subsubsection{Criticality of the Application}
+\subsubsection{Safety and Security Considerations}
+
+\subsection{Design and Implementation Constraints}
+\subsection{Assumptions and Dependencies}
+\subsubsection{Technical Assumptions}
+\subsubsection{Operational Dependencies}
+\subsubsection{User Behavior Assumptions}
+\subsubsection{Future Provisions}
+
+% ========== 3 Specific Requirements ==========
+\section{Specific Requirements}
+\subsection{Functional Requirements}
+\subsubsection{User Registration and Profiles}
+\subsubsection{Skill Listings}
+\subsubsection{Messaging System}
+\subsubsection{Feedback System}
+
+\subsection{External Interface Requirements}
+\subsubsection{Inputs}
+\subsubsection{Outputs}
+
+\subsection{User Interfaces}
+\subsubsection{Layout and Design}
+\subsubsection{Accessibility}
+
+\subsection{Hardware Interfaces}
+\subsection{Software Interfaces}
+\subsection{Communication Interfaces}
+
+% ========== 4 Performance and Non-Functional Requirements ==========
+\section{Performance and Non-Functional Requirements}
+\subsection{Performance Requirements}
+\subsubsection{Response Time}
+\subsubsection{Concurrent User Management}
+\subsubsection{Data Throughput}
+\subsubsection{Peak Load Management}
+
+\subsection{Usability Requirements}
+\subsubsection{Intuitive Design}
+\subsubsection{Accessibility Features}
+\subsubsection{Error Feedback and Guidance}
+
+\subsection{Reliability Requirements}
+\subsubsection{Uptime and Availability}
+\subsubsection{Data Integrity}
+\subsubsection{Recovery Protocols}
+
+\subsection{Security Requirements}
+\subsubsection{Authentication and Authorization}
+\subsubsection{Data Protection}
+\subsubsection{Threat Detection and Prevention (In Future)}
+\subsubsection{Compliance with Privacy Standards}
+
+\subsection{Scalability Requirements}
+\subsubsection{Resource Allocation}
+\subsubsection{Modular Architecture}
+
+% ========== 5 System Features ==========
+\section{System Features}
+\subsection{User Activity Dashboard}
+\subsubsection{Dashboard Overview}
+\subsubsection{Real-Time Data Updates}
+\subsubsection{Interactive Features}
+\subsubsection{Personalization}
+
+\subsection{Robust Feedback System}
+\subsubsection{Feedback Mechanism}
+\subsubsection{Review Aggregation and Display}
+\subsubsection{Notifications and Alerts (In Future)}
+\subsubsection{Feedback for System Improvements}
+
+% ========== 6 Tools and Technologies ==========
+\section{Tools and Technologies}
+\subsection{Core Technologies}
+\subsubsection{Frontend Framework}
+\subsubsection{Backend Framework}
+\subsubsection{Database}
+\subsubsection{Cloud Infrastructure}
+
+% ========== 7 Design Constraints ==========
+\section{Design Constraints}
+\subsection{Hardware Limitations}
+\subsection{Attributes}
+\subsection{Operations}
+\subsection{Site Adaptation}
+
+% ========== Appendix ==========
+\section*{Appendix}
+\addcontentsline{toc}{section}{Appendix}
+
+\end{document}
