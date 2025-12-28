@@ -1,0 +1,1651 @@
+\documentclass[12pt,a4paper]{article}
+
+% Required Packages (Integrated from both layouts)
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{longtable}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{tocloft}
+\usepackage{lastpage}
+\usepackage{booktabs}
+
+% ---------------- SETTINGS ----------------
+\setstretch{1.2}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+    pdftitle={Namal Criko SRS},
+    pdfpagemode=FullScreen,
+}
+
+% ---------------- HEADER / FOOTER ----------------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{CSC-225 – Software Engineering}
+\fancyhead[R]{Project Proposal}
+\fancyfoot[C]{Page \thepage\ of \pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% ---------------- SECTION FORMAT ----------------
+\titleformat{\section}[block]{\Large\bfseries}{\thesection.}{0.5em}{}
+\titleformat{\subsection}[block]{\large\bfseries}{\thesubsection.}{0.5em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries}{\thesubsubsection}{1em}{}
+
+\begin{document}
+
+% ---------- TITLE PAGE ----------
+\begin{titlepage}
+    \centering
+    \includegraphics[width=4cm]{Namal logo.png}\par\vspace{1cm}
+    {\Huge \textbf{Software Requirements Specification (SRS)}}\\[0.5cm]
+    {\Large CSC-225 – Software Engineering}\\[0.3cm]
+    {\Large Department of Computer Science}\\[0.3cm]
+    {\Large Namal University, Mianwali}\\[1cm]
+    {\LARGE \textbf{Project Title:} Namal Criko}\\[0.5cm]
+    {\Large Cricket Simulation Trainer}\\[0.2cm]
+
+    \textbf{Team Members:}\\[0.2cm]
+    \begin{tabular}{l l l}
+        \textbf{Name} & \textbf{Roll No.} & \textbf{Email} \\ \hline
+        M. Jamal Ahmad Khan & Num-Bscs-2024-51 & bscs24f51@namal.edu.pk \\
+        Qazi M. Auon Farooqi & Num-Bscs-2024-64 & bscs24f64@namal.edu.pk \\
+        Breera Ijaz & Num-Bscs-2024-20 & bscs24f20@namal.edu.pk \\
+    \end{tabular}\\[1cm]
+
+    \textbf{Submission Date:} December 28, 2025\\[0.5cm]
+
+    \vfill
+    \textbf{Instructor:} Asiya Batool\\[0.2cm]
+    \textbf{Semester:} Fall 2025\\[2cm]
+\end{titlepage}
+
+\newpage
+
+
+% Table of Contents
+\tableofcontents
+
+
+% List of Figures
+\listoffigures
+\newpage
+% Main Content Begins
+\section{Introduction}
+
+\subsection{Purpose}
+
+\subsubsection{Overview of the Document}
+This Software Requirements Specification (SRS) document provides a comprehensive description of the Namal Criko cricket simulation training platform. The document serves as the primary reference for all stakeholders involved in the development, testing, and deployment phases of the project. It establishes a clear understanding of the system's functionalities, constraints, and quality attributes, ensuring alignment between technical teams and the requirement provider.
+
+\subsubsection{Purpose of the SRS}
+The purpose of this SRS document is to:
+\begin{itemize}
+    \item Define all functional and non-functional requirements for the Namal Criko platform in detail
+    \item Serve as a baseline for project planning, design, implementation, and validation activities
+    \item Provide clear specifications for quality assurance teams to develop comprehensive test cases
+    \item Enable future maintenance teams to understand system architecture and design decisions
+    \item Document assumptions, dependencies, and constraints that influence system development
+\end{itemize}
+
+\subsubsection{Intended Audience}
+This document addresses the needs of multiple stakeholder groups:
+
+\paragraph{Development Team}
+\begin{itemize}
+    \item \textbf{Software Engineers:} To implement features according to specified requirements
+    \item \textbf{System Architects:} To design scalable and maintainable system architecture
+    \item \textbf{UI/UX Designers:} To create intuitive interfaces aligned with user needs
+    \item \textbf{Database Administrators:} To design efficient data storage and retrieval mechanisms
+\end{itemize}
+
+\paragraph{Quality Assurance Team}
+\begin{itemize}
+    \item \textbf{QA Engineers:} To develop test cases and validation strategies
+    \item \textbf{Testing Specialists:} To ensure system meets all specified requirements
+\end{itemize}
+
+\paragraph{Project Management}
+\begin{itemize}
+    \item \textbf{Project Managers:} To plan resources, timelines, and deliverables
+    \item \textbf{Requirement Provider (Mr. Ammar Ahmad Khan):} To validate that requirements are correctly captured
+\end{itemize}
+
+\paragraph{End Users}
+\begin{itemize}
+    \item \textbf{Cricket Students:} Individuals seeking to improve their cricket skills through simulation
+    \item \textbf{Cricket Coaches:} Professionals using the platform as a training supplement
+    \item \textbf{Administrators:} Staff members managing user accounts and content
+\end{itemize}
+
+\subsection{Scope}
+
+\subsubsection{Product Identification}
+Namal Criko is a web-based interactive cricket simulation training platform designed specifically for students and cricket enthusiasts at Namal University . The system provides a controlled, technology-driven environment where users can learn and practice various cricket techniques through visual simulations combined with comprehensive textual instruction.
+
+\subsubsection{Product Features}
+\paragraph{What Namal Criko Will Do:}
+\begin{itemize}
+    \item Provide interactive simulations for batting techniques including drives, sweeps, cuts, pulls, and defensive shots
+    \item Offer bowling simulations covering fast bowling, spin bowling, and variations (Yorker, bouncer, slower ball)
+    \item Deliver step-by-step visual guidance with body movement demonstrations and timing indicators
+    \item Enable users to select specific techniques for focused practice sessions
+    \item Track individual player performance metrics including matches played, run rate, and skill progression
+    \item Implement hybrid learning through combination of interactive simulations and descriptive technical text
+    \item Support administrative control over user access, content management, and performance monitoring
+    \item Provide a help desk system for user query resolution and technical support
+    \item Allow administrators to post cricket-related event announcements and advertisements
+\end{itemize}
+
+\paragraph{What Namal Criko Will Not Do (Initial Release):}
+\begin{itemize}
+    \item Provide real-time multiplayer cricket matches or competitive gameplay
+    \item Include artificial intelligence-based opponent players
+    \item Support virtual reality (VR) or augmented reality (AR) interfaces
+    \item Offer mobile native applications (initial release is web-only)
+    \item Integrate with external cricket statistics databases or APIs
+    \item Provide live video streaming or recorded video tutorials
+    \item Include payment gateways for premium features or subscriptions
+    \item Support multiple languages (English only in initial release)
+\end{itemize}
+
+\subsubsection{Application of the Software}
+Namal Criko addresses critical gaps in cricket training by providing:
+\begin{itemize}
+    \item \textbf{Accessible Training:} Eliminates geographical and temporal constraints by providing 24/7 access to cricket training simulations
+    \item \textbf{Cost-Effective Learning:} Reduces dependency on expensive coaching sessions and physical training facilities
+    \item \textbf{Technique Mastery:} Enables focused practice on specific techniques with immediate visual feedback
+    \item \textbf{Performance Tracking:} Provides data-driven insights into skill progression and areas requiring improvement
+    \item \textbf{Safe Practice Environment:} Allows beginners to learn fundamental techniques without risk of injury
+    \item \textbf{Supplementary Training Tool:} Complements physical practice by reinforcing theoretical understanding
+\end{itemize}
+
+\subsubsection{Goals and Benefits}
+\begin{itemize}
+    \item \textbf{Skill Development:} Accelerate the learning curve for cricket techniques through interactive practice
+    \item \textbf{Accessibility:} Provide cricket training resources to students who lack access to professional coaching
+    \item \textbf{Engagement:} Increase student interest in cricket through gamified learning experiences
+    \item \textbf{Data Analytics:} Enable coaches and administrators to monitor student progress systematically
+    \item \textbf{Community Building:} Foster a cricket culture within Namal University through shared learning platform
+    \item \textbf{Scalability:} Build foundation for future enhancements including multiplayer modes and advanced analytics
+\end{itemize}
+
+\subsection{Overview}
+
+\subsubsection{Document Structure}
+This SRS document follows the IEEE 830 standard and is organized into the following major sections:
+
+\begin{enumerate}
+    \item \textbf{Introduction:} Provides document purpose, scope, definitions, and overview
+    \item \textbf{Overall Description:} Describes product perspective, user characteristics, constraints, and assumptions
+    \item \textbf{Specific Requirements:} Details functional requirements, interface specifications, and system features
+    \item \textbf{System Features:} Enumerates core features with detailed descriptions
+    \item \textbf{External Interface Requirements:} Specifies user, hardware, software, and communication interfaces
+    \item \textbf{Non-Functional Requirements:} Covers performance, security, reliability, and usability requirements
+    \item \textbf{Other Requirements:} Addresses legal, regulatory, and operational considerations
+    \item \textbf{Appendices:} Contains supplementary materials including diagrams, glossary, and references
+\end{enumerate}
+
+\subsubsection{Organization of the Document}
+Each section builds upon previous sections to provide progressively detailed specifications:
+\begin{itemize}
+    \item Sections are numbered hierarchically for easy reference and navigation
+    \item Cross-references link related requirements and specifications
+    \item Technical terms are defined in the glossary to ensure consistent understanding
+    \item Diagrams and tables supplement textual descriptions for clarity
+    \item Requirements are uniquely identified with tags (e.g., FR-001, NFR-001) for traceability
+\end{itemize}
+
+\subsection{Definitions, Acronyms, and Abbreviations}
+\begin{longtable}{|p{4cm}|p{10cm}|}
+\hline
+\textbf{Term/Acronym} & \textbf{Definition} \\ \hline
+\endfirsthead
+\hline
+\textbf{Term/Acronym} & \textbf{Definition} \\ \hline
+\endhead
+\hline
+\endfoot
+
+Namal Criko & The name of the cricket simulation training platform developed for Namal University students \\ \hline
+
+SRS & Software Requirements Specification - a document describing system requirements \\ \hline
+
+RP & Requirement Provider - Mr. Ammar Ahmad Khan, the stakeholder defining system requirements \\ \hline
+
+UI/UX & User Interface/User Experience - design aspects affecting user interaction with the system \\ \hline
+
+Admin & Administrator - privileged user with system management capabilities \\ \hline
+
+Player & Regular user who accesses cricket training simulations \\ \hline
+
+Simulation & Interactive visual representation of cricket techniques with step-by-step guidance \\ \hline
+
+Run Rate & Performance metric measuring runs scored per over or per match \\ \hline
+
+IEEE 830 & IEEE Recommended Practice for Software Requirements Specifications standard \\ \hline
+
+HTTPS & Hypertext Transfer Protocol Secure - encrypted communication protocol \\ \hline
+
+DBMS & Database Management System - software for managing structured data \\ \hline
+
+HTML5 & HyperText Markup Language version 5 - standard for web content structure \\ \hline
+
+CSS3 & Cascading Style Sheets version 3 - stylesheet language for web presentation \\ \hline
+
+JavaScript & Programming language for interactive web functionality \\ \hline
+
+Responsive Design & Design approach ensuring optimal display across various device screen sizes \\ \hline
+
+Session Management & System mechanism for tracking authenticated user interactions \\ \hline
+
+Two-Factor Authentication (2FA) & Security mechanism requiring two forms of identity verification \\ \hline
+
+CRUD Operations & Create, Read, Update, Delete - fundamental data manipulation operations \\ \hline
+
+MVP & Minimum Viable Product - initial version with core features \\ \hline
+
+\end{longtable}
+
+\subsection{References}
+
+\subsubsection{Standards}
+\begin{enumerate}
+    \item IEEE Std 830-1998: IEEE Recommended Practice for Software Requirements Specifications
+    \item IEEE Std 1012-2016: IEEE Standard for System, Software, and Hardware Verification and Validation
+\subsubsection{Technical Documentation}
+\begin{enumerate}
+    \item HTML5 Specification: \url{https://html.spec.whatwg.org/}
+    \item CSS3 Standards: \url{https://www.w3.org/Style/CSS/}
+    \item JavaScript ES6+ Documentation: \url{https://developer.mozilla.org/en-US/docs/Web/JavaScript}
+    \item React Documentation (if applicable): \url{https://react.dev/}
+    \item Node.js Documentation (if applicable): \url{https://nodejs.org/docs/}
+    \item MongoDB Documentation (if applicable): \url{https://www.mongodb.com/docs/}
+\end{enumerate}
+
+\subsubsection{Project Documentation}
+\begin{enumerate}
+    \item Namal Criko Project Proposal (Milestone 1)
+    \item Meeting Minutes with Requirement Provider
+    \item Requirement Provider Agreement
+    \item Project GitHub Repository: \url{https://github.com/MJamalAhmadKhan/Namal-Criko}
+\end{enumerate}
+
+\subsubsection{Development Tools}
+\begin{enumerate}
+    \item Visual Studio Code: \url{https://code.visualstudio.com}
+    \item Git Version Control: \url{https://git-scm.com}
+    \item GitHub Documentation: \url{https://docs.github.com}
+\end{enumerate}
+
+\newpage
+
+\section{Overall Description}
+
+\subsection{Product Perspective}
+Namal Criko is an independent web-based cricket training platform designed to supplement traditional physical training methods. Unlike commercial cricket games focused on entertainment, Namal Criko focous educational content and technique mastery through interactive simulations paired with instructional materials.
+
+\subsubsection{System Context}
+The system operates as a standalone platform with the following contextual relationships:
+
+\paragraph{Relationship with Physical Training}
+Namal Criko serves as a complementary tool to physical cricket practice rather than a replacement. It provides:
+\begin{itemize}
+    \item Theoretical understanding of techniques before physical practice
+    \item Reinforcement of concepts learned during coaching sessions
+    \item Convenient access to technique review between practice sessions
+    \item Visual aids for self-correction of form and timing
+\end{itemize}
+
+\paragraph{Integration Possibilities}
+While initially standalone, the architecture allows future integration with:
+\begin{itemize}
+    \item University student information systems for automated user provisioning
+    \item Cricket coaching management platforms for progress tracking
+    \item Video analysis tools for comparing simulations with real performances
+    \item Wearable fitness trackers for incorporating physical activity data
+\end{itemize}
+
+\subsubsection{System Interfaces}
+The system comprises several interconnected components:
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{context_diagram.JPG}
+\caption{System Context Diagram showing external entities and data flows}
+\label{fig:context}
+\end{figure}
+
+\paragraph{User Interface Layer}
+\begin{itemize}
+    \item Web browser-based interface supporting modern browsers (Chrome, Firefox, Safari, Edge)
+    \item Responsive design adapting to desktop, tablet, and mobile screen sizes
+    \item Intuitive navigation structure for quick access to simulations
+\end{itemize}
+
+\paragraph{Application Layer}
+\begin{itemize}
+    \item Business logic for user authentication and authorization
+    \item Simulation engine managing technique demonstrations
+    \item Performance tracking and analytics module
+    \item Content management system for administrators
+\end{itemize}
+
+\paragraph{Data Layer}
+\begin{itemize}
+    \item Relational or NoSQL database storing user profiles, performance data, and content
+    \item File storage system for simulation assets (images, animations)
+    \item Session management for maintaining user state
+\end{itemize}
+
+\subsubsection{User Classes and Characteristics}
+The system defines two primary user classes with distinct characteristics and access levels:
+
+\paragraph{Player (Regular User)}
+\begin{itemize}
+    \item \textbf{Primary Goal:} Learn and practice cricket techniques
+    \item \textbf{Technical Proficiency:} Basic to intermediate computer literacy
+    \item \textbf{Age Range:} Primarily 15-25 years (university students)
+    \item \textbf{Usage Frequency:} Expected 2-5 sessions per week, 15-30 minutes per session
+    \item \textbf{Cricket Experience:} Ranges from complete beginners to intermediate players
+    \item \textbf{Educational Background:} University-level education
+    \item \textbf{Access Requirements:} Account creation subject to admin approval
+    \item \textbf{Key Features Used:} Simulations, performance tracking, help desk
+\end{itemize}
+
+\paragraph{Administrator}
+\begin{itemize}
+    \item \textbf{Primary Goal:} Manage platform content, users, and system operations
+    \item \textbf{Technical Proficiency:} Intermediate to advanced computer literacy
+    \item \textbf{Responsibilities:} User account approval, content updates, query resolution, event management
+    \item \textbf{Usage Pattern:} Daily monitoring with periodic content updates
+    \item \textbf{Cricket Knowledge:} Strong understanding of cricket techniques and terminology
+    \item \textbf{Access Requirements:} Pre-configured credentials with elevated privileges
+    \item \textbf{Key Features Used:} User management, content management, analytics dashboard, help desk management
+\end{itemize}
+
+\subsection{Product Functions}
+The core functions of Namal Criko are organized into three major functional areas:
+
+\subsubsection{Cricket Technique Simulations}
+\paragraph{Batting Simulations}
+The system provides comprehensive batting technique simulations organized by shot type:
+
+\begin{itemize}
+    \item \textbf{Defensive Techniques}
+    \begin{itemize}
+        \item Forward Defense: Body position, bat angle, weight transfer
+        \item Backward Defense: Footwork, bat-pad gap, balance maintenance
+        \item Leaving Deliveries: Judgment, shoulder drops, bat withdrawal
+    \end{itemize}
+    
+    \item \textbf{Attacking Shots}
+    \begin{itemize}
+        \item Straight Drive: Timing, follow-through, elbow position
+        \item Cover Drive: Footwork, bat path, weight transfer
+        \item Square Drive: Bat angle, foot placement, shot control
+        \item Pull Shot: Weight distribution, head position, shot timing
+        \item Hook Shot: Technique variation, risk management, shot selection
+        \item Cut Shot: Backward movement, bat angle, wrist work
+        \item Sweep Shot: Positioning, bat angle, shot execution
+        \item Reverse Sweep: Grip change, body position, shot control
+    \end{itemize}
+\end{itemize}
+
+Each simulation includes:
+\begin{itemize}
+    \item Frame-by-frame breakdown of body movements
+    \item Timing indicators for optimal shot execution
+    \item Common mistakes and correction tips
+    \item Variation demonstrations (e.g., different ball speeds, lengths)
+\end{itemize}
+
+\paragraph{Bowling Simulations}
+The system covers major bowling categories with technique-specific guidance:
+
+\begin{itemize}
+    \item \textbf{Fast Bowling}
+    \begin{itemize}
+        \item Run-up mechanics: Rhythm, acceleration, approach angle
+        \item Delivery stride: Front foot placement, back foot drive, balance
+        \item Arm action: Bowling arm path, release point, follow-through
+        \item Variations: Yorker, bouncer, slower ball, knuckle ball
+    \end{itemize}
+    
+    \item \textbf{Spin Bowling}
+    \begin{itemize}
+        \item Off-Spin: Finger position, wrist action, loop trajectory
+        \item Leg-Spin: Wrist position, ball release, turn generation
+        \item Arm Ball: Grip variation, release modification
+        \item Doosra/Googly: Advanced technique demonstrations
+    \end{itemize}
+    
+    \item \textbf{Medium-Pace Bowling}
+    \begin{itemize}
+        \item Swing bowling: Wrist position, seam orientation, release point
+        \item Cutters: Grip variation, finger work, seam manipulation
+        \item Change of pace: Rhythm variation, deception techniques
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{User Management and Progress Tracking}
+\paragraph{Player Profile Management}
+\begin{itemize}
+    \item User registration with validation (name, email, contact number)
+    \item Profile customization options (preferred role, skill level, goals)
+    \item Personal dashboard displaying recent activity and statistics
+    \item Account status monitoring (pending approval, active, suspended)
+\end{itemize}
+
+\paragraph{Performance Analytics}
+\begin{itemize}
+    \item Technique completion tracking (which simulations completed)
+    \item Time spent per technique category
+    \item Progress visualization through charts and graphs
+    \item Performance metrics including:
+    \begin{itemize}
+        \item Total simulations accessed
+        \item Techniques mastered (based on completion frequency)
+        \item Learning streaks and consistency metrics
+        \item Comparative analysis against peer averages (optional)
+    \end{itemize}
+\end{itemize}
+
+\paragraph{Administrative User Management}
+\begin{itemize}
+    \item Account approval workflow with notification system
+    \item User list management with search and filter capabilities
+    \item Bulk operations for user status changes
+    \item Activity logs for audit and compliance
+\end{itemize}
+
+\subsubsection{Content and Communication Management}
+\paragraph{Simulation Content Management}
+\begin{itemize}
+    \item Upload and organize simulation assets (images, animations, text)
+    \item Update existing simulation content without system downtime
+    \item Version control for content iterations
+    \item Content scheduling for timed releases
+\end{itemize}
+
+\paragraph{Help Desk System}
+\begin{itemize}
+    \item User-submitted query/ticket creation
+    \item Category-based ticket classification (technical, content, account)
+    \item Ticket status tracking (open, in-progress, resolved, closed)
+    \item Admin response interface with email notifications
+    \item FAQ management for common queries
+\end{itemize}
+
+\paragraph{Event and Announcement Management}
+\begin{itemize}
+    \item Cricket event posting with details (date, venue, registration info)
+    \item Advertisement management for cricket-related promotions
+    \item Notification system for upcoming events
+    \item Event archiving and history maintenance
+\end{itemize}
+
+\subsection{User Characteristics}
+
+\subsubsection{Educational Level and Background}
+Namal Criko targets users with diverse educational backgrounds while maintaining accessibility:
+
+\paragraph{Primary User Base}
+\begin{itemize}
+    \item \textbf{University Students:} Enrolled at Namal University or similar institutions
+    \item \textbf{Education Level:} Undergraduate or equivalent qualification
+    \item \textbf{Academic Disciplines:} All fields (not limited to sports sciences)
+    \item \textbf{Computer Literacy:} Basic proficiency with web browsers and digital interfaces
+\end{itemize}
+
+\paragraph{Content Accessibility}
+\begin{itemize}
+    \item Instructions presented in clear, non-technical English
+    \item Cricket terminology explained through tooltips and glossary
+    \item Visual demonstrations complement textual descriptions
+    \item Progressive difficulty levels accommodate beginners through advanced users
+\end{itemize}
+
+\subsubsection{Cricket Experience Levels}
+The platform accommodates users across the cricket proficiency spectrum:
+
+\paragraph{Beginner Level}
+\begin{itemize}
+    \item Users with minimal or no cricket experience
+    \item Require foundational technique explanations
+    \item Benefit from slow-motion breakdowns and detailed annotations
+    \item Need extensive textual guidance alongside visual simulations
+\end{itemize}
+
+\paragraph{Intermediate Level}
+\begin{itemize}
+    \item Users with basic cricket knowledge from school or club participation
+    \item Seek technique refinement and advanced variations
+    \item Can follow standard-pace demonstrations with supplementary notes
+    \item Interested in comparative analysis of different approaches
+\end{itemize}
+
+\paragraph{Advanced Level}
+\begin{itemize}
+    \item Users with competitive cricket experience
+    \item Focus on fine-tuning specific aspects of technique
+    \item Utilize platform for review and mental preparation
+    \item May contribute feedback for content improvement
+\end{itemize}
+
+\subsubsection{Technical Proficiency}
+\paragraph{Player Technical Requirements}
+\begin{itemize}
+    \item Ability to navigate web browsers and fill online forms
+    \item Understanding of basic web interactions (clicking, scrolling, form submission)
+    \item No programming or advanced technical knowledge required
+    \item Familiarity with email for account notifications
+\end{itemize}
+
+\paragraph{Administrator Technical Requirements}
+\begin{itemize}
+    \item Intermediate computer skills including file management
+    \item Understanding of content management principles
+    \item Ability to review and analyze user data
+    \item Basic troubleshooting skills for user support
+\end{itemize}
+
+\subsubsection{Accessibility Considerations}
+The platform incorporates inclusive design principles:
+\begin{itemize}
+    \item High contrast text for visual clarity
+    \item Keyboard navigation support for users with mobility constraints
+    \item Text alternatives for visual content where applicable
+    \item Adjustable playback speeds for simulations
+    \item Clear language avoiding unnecessary jargon
+\end{itemize}
+
+\subsection{Constraints}
+
+\subsubsection{Regulatory and Policy Constraints}
+\paragraph{Data Protection and Privacy}
+\begin{itemize}
+    \item Compliance with university data protection policies
+    \item User consent requirements for data collection and processing
+    \item Secure storage of personal information (names, emails, contact numbers)
+    \item Data retention and deletion policies aligned with legal requirements
+    \item Privacy policy clearly communicated to users during registration
+\end{itemize}
+
+\paragraph{Educational Use Policy}
+\begin{itemize}
+    \item Platform intended exclusively for educational purposes
+    \item No commercial use or monetization of platform content
+    \item Intellectual property rights maintained by Namal University
+    \item User-generated content subject to university acceptable use policies
+\end{itemize}
+
+\subsubsection{Hardware Limitations}
+\paragraph{Client-Side Constraints}
+\begin{itemize}
+    \item \textbf{Device Compatibility:} Must function on devices available to Namal University students (personal laptops, desktops, smartphones, tablets)
+    \item \textbf{Internet Connectivity:} Performance dependent on user's internet connection quality; minimum 1 Mbps recommended
+    \item \textbf{Screen Resolution:} Simulations optimized for minimum 1024x768 resolution but adapt to mobile devices
+    \item \textbf{Browser Requirements:} Latest versions of Chrome, Firefox, Safari, or Edge; older browsers may have degraded functionality
+\end{itemize}
+
+\paragraph{Server-Side Constraints}
+\begin{itemize}
+    \item Hosting infrastructure limited by university IT budget
+    \item Server capacity to handle peak concurrent users (estimated 100-200 simultaneous users)
+    \item Storage constraints for simulation assets and user data
+    \item Bandwidth limitations affecting media delivery speeds
+\end{itemize}
+
+\subsubsection{Software Interface Constraints}
+\paragraph{Technology Stack Limitations}
+\begin{itemize}
+    \item Development constrained to open-source technologies to minimize licensing costs
+    \item Framework selection influenced by team expertise and available documentation
+    \item Database choice limited by hosting environment capabilities
+    \item No integration with proprietary third-party cricket analytics platforms
+\end{itemize}
+
+\paragraph{Authentication Constraints}
+\begin{itemize}
+    \item Single sign-on (SSO) integration with university systems not feasible in initial release
+    \item Email verification dependent on university email server reliability
+    \item Password recovery mechanisms limited to email-based reset
+\end{itemize}
+
+\subsubsection{Design and Implementation Constraints}
+\paragraph{Development Timeline}
+\begin{itemize}
+    \item Project must be completed within 1 year  
+    \item Milestone deadlines impose incremental delivery requirements
+    \item Testing and refinement time limited by project schedule
+\end{itemize}
+
+\paragraph{Team Constraints}
+\begin{itemize}
+    \item Development team of three members with limited prior experience
+    \item Part-time development due to concurrent academic commitments
+    \item Knowledge limitations may necessitate simpler implementation approaches
+\end{itemize}
+
+\paragraph{Budget Constraints}
+\begin{itemize}
+    \item Zero-budget project restricting use of paid services or APIs
+    \item Hosting on free-tier cloud services with associated limitations
+    \item No budget for professional design assets or stock media
+\end{itemize}
+
+\subsubsection{Operational Constraints}
+\paragraph{Maintenance and Support}
+\begin{itemize}
+    \item Limited ongoing maintenance capacity post-semester
+    \item Administrative responsibilities delegated to designated university staff
+    \item Technical support dependent on administrator availability
+\end{itemize}
+
+\paragraph{Content Updates}
+\begin{itemize}
+    \item New simulation content creation requires administrator technical skills
+    \item Content review and quality assurance time-consuming
+    \item Updates may cause temporary service interruptions
+\end{itemize}
+
+\subsection{Assumptions and Dependencies}
+
+\subsubsection{Assumptions}
+\paragraph{User Behavior Assumptions}
+\begin{itemize}
+    \item Users will access the platform with genuine intent to learn cricket techniques
+    \item Users possess basic understanding of cricket rules and terminology
+    \item Users will provide accurate personal information during registration
+    \item Users will utilize the help desk appropriately without spam submissions
+    \item Users have access to stable internet connections during learning sessions
+\end{itemize}
+
+\paragraph{Technical Assumptions}
+\begin{itemize}
+    \item Users' devices meet minimum hardware specifications for web browsing
+    \item Modern web browsers with JavaScript enabled are standard among target users
+    \item University network infrastructure provides adequate bandwidth
+    \item Hosting platform maintains 99\% uptime reliability
+    \item Database systems handle concurrent access without significant performance degradation
+\end{itemize}
+
+\paragraph{Operational Assumptions}
+\begin{itemize}
+    \item Administrative staff available for user approval within 24-48 hours of registration
+    \item Content experts available to validate cricket technique accuracy
+    \item University continues to support project post-development
+    \item User base grows gradually allowing for capacity planning
+\end{itemize}
+
+\subsubsection{Dependencies}
+\paragraph{External Dependencies}
+\begin{itemize}
+    \item \textbf{Hosting Services:} Availability and performance of cloud hosting provider
+    \item \textbf{Email Services:} Reliability of email delivery for notifications and verification
+    \item \textbf{Browser Vendors:} Continued support for web standards and APIs used by the platform
+    \item \textbf{Internet Service Providers:} User access dependent on ISP connectivity quality
+\end{itemize}
+
+\paragraph{Internal Dependencies}
+\begin{itemize}
+    \item \textbf{Development Team Availability:} Project progress dependent on team member schedules
+    \item \textbf{Requirement Provider Input:} Timely feedback from Mr. Ammar Ahmad Khan essential for validation
+    \item \textbf{University Resources:} Access to university servers or approved hosting alternatives
+    \item \textbf{Content Creation:} Simulation quality dependent on availability of cricket technique references
+\end{itemize}
+
+\paragraph{Third-Party Dependencies}
+\begin{itemize}
+    \item Open-source frameworks and libraries for development
+    \item Free-tier hosting services within usage limits
+    \item Public cricket technique resources for content validation
+    \item Development tools and IDEs for coding and testing
+\end{itemize}
+
+\newpage
+
+\section{Specific Requirements}
+
+This section provides detailed specifications for all functional and interface requirements of the Namal Criko system. Each requirement is uniquely identified and described with sufficient detail for design and implementation.
+
+\subsection{Functional Requirements}
+
+\subsubsection{User Authentication and Authorization}
+
+\paragraph{FR-001: User Registration}
+\begin{itemize}
+    \item \textbf{Description:} The system shall allow new users to create player accounts through a registration form
+    \item \textbf{Inputs:} Full name, email address, contact number, password, confirm password
+    \item \textbf{Process:}
+    \begin{enumerate}
+        \item User accesses registration page
+        \item User fills mandatory fields with validation checks
+        \item System validates email format and password strength
+        \item System creates account in "Pending Approval" status
+        \item System sends confirmation email to user
+        \item Admin receives notification of new registration
+    \end{enumerate}
+    \item \textbf{Outputs:} Account created with pending status, email notifications sent
+    \item \textbf{Validation Rules:}
+    \begin{itemize}
+        \item Email must be unique in system
+        \item Password minimum 8 characters with alphanumeric combination
+        \item Contact number must be valid format
+        \item All fields mandatory
+    \end{itemize}
+    \item \textbf{Priority:} High
+\end{itemize}
+
+\paragraph{FR-002: Admin Account Approval}
+\begin{itemize}
+    \item \textbf{Description:} The system shall require administrator to manually approve new user accounts before granting access
+    \item \textbf{Inputs:} Admin credentials, user account selection, approval/rejection decision
+    \item \textbf{Process:}
+    \begin{enumerate}
+        \item Admin logs into admin portal
+        \item Admin views list of pending account approvals
+        \item Admin reviews user information
+        \item Admin approves or rejects account
+        \item System updates account status
+        \item System sends status notification email to user
+    \end{enumerate}
+    \item \textbf{Outputs:} Account status changed to "Active" or "Rejected", notification email sent
+    \item \textbf{Business Rules:} Only approved accounts can access dashboard and simulations
+    \item \textbf{Priority:} High
+\end{itemize}
+
+\paragraph{FR-003: User Login (Player)}
+\begin{itemize}
+    \item \textbf{Description:} The system shall authenticate players using email and password credentials
+    \item \textbf{Inputs:} Email address, password
+    \item \textbf{Process:}
+    \begin{enumerate}
+        \item User enters credentials on player login page
+        \item System verifies credentials against database
+        \item System checks account approval status
+        \item If approved, system creates user session and redirects to player dashboard
+        \item If not approved, system displays "Account pending approval" message
+        \item If credentials invalid, system displays error message
+    \end{enumerate}
+    \item \textbf{Outputs:} Authenticated session created, dashboard displayed
+    \item \textbf{Security:} Failed login attempts tracked, account locked after 5 consecutive failures
+    \item \textbf{Priority:} High
+\end{itemize}
+
+\paragraph{FR-004: Admin Login}
+\begin{itemize}
+    \item \textbf{Description:} The system shall provide separate authentication portal for administrators
+    \item \textbf{Inputs:} Admin email, admin password
+    \item \textbf{Process:} Similar to player login with redirect to admin dashboard
+    \item \textbf{Outputs:} Authenticated admin session, admin dashboard displayed
+    \item \textbf{Security:} Enhanced security with IP restrictions and session timeout
+    \item \textbf{Priority:} High
+\end{itemize}
+
+\paragraph{FR-005: Password Reset}
+\begin{itemize}
+    \item \textbf{Description:} The system shall allow users to reset forgotten passwords via email verification
+    \item \textbf{Inputs:} Email address for reset request
+    \item \textbf{Process:}
+    \begin{enumerate}
+        \item User clicks "Forgot Password" link
+        \item User enters registered email address
+        \item System generates unique password reset token
+        \item System sends reset link to email
+        \item User clicks link and enters new password
+        \item System validates token and updates password
+    \end{enumerate}
+    \item \textbf{Outputs:} Password updated, confirmation message displayed
+    \item \textbf{Security:} Reset tokens expire after 1 hour
+    \item \textbf{Priority:} Medium
+\end{itemize}
+
+\paragraph{FR-006: Session Management}
+\begin{itemize}
+    \item \textbf{Description:} The system shall maintain secure user sessions with automatic timeout
+    \item \textbf{Process:}
+    \begin{itemize}
+        \item Active sessions valid for 120 minutes of inactivity
+        \item Warning displayed 5 minutes before timeout
+        \item User can extend session through activity
+        \item Logout functionality to explicitly terminate session
+    \end{itemize}
+    \item \textbf{Priority:} Medium
+\end{itemize}
+
+\subsubsection{Player Module Requirements}
+
+\paragraph{FR-007: Player Dashboard}
+\begin{itemize}
+    \item \textbf{Description:} The system shall provide personalized dashboard displaying user profile and activity summary
+    \item \textbf{Components:}
+    \begin{itemize}
+        \item Profile information (name, email, contact)
+        \item Quick statistics (total simulations accessed, learning streak)
+        \item Recent activity feed
+        \item Quick access links to simulations and help desk
+        \item Notifications for events or updates
+    \end{itemize}
+    \item \textbf{Outputs:} Rendered dashboard with real-time data
+    \item \textbf{Priority:} High
+\end{itemize}
+
+\paragraph{FR-008: Profile Management}
+\begin{itemize}
+    \item \textbf{Description:} The system shall allow players to view and update their profile information
+    \item \textbf{Editable Fields:} Name, contact number, password (with current password verification)
+    \item \textbf{Non-Editable Fields:} Email address, account creation date
+    \item \textbf{Process:} Update form with validation, save changes to database, confirmation message
+    \item \textbf{Priority:} Medium
+\end{itemize}
+
+\paragraph{FR-009: Simulation Categories Navigation}
+\begin{itemize}
+    \item \textbf{Description:} The system shall present cricket techniques organized in hierarchical categories
+    \item \textbf{Category Structure:}
+    \begin{itemize}
+        \item Level 1: Batting / Bowling
+        \item Level 2 (Batting): Defensive Shots / Attacking Shots
+        \item Level 2 (Bowling): Fast Bowling / Spin Bowling / Medium-Pace Bowling
+        \item Level 3: Specific techniques (e.g., Cover Drive, Yorker)
+    \end{itemize}
+    \item \textbf{Interface:} Card-based or menu-based navigation with icons and descriptions
+    \item \textbf{Priority:} High
+\end{itemize}
+
+\paragraph{FR-010: Simulation Viewing}
+\begin{itemize}
+    \item \textbf{Description:} The system shall display interactive simulations with step-by-step visual guidance
+    \item \textbf{Components:}
+    \begin{itemize}
+        \item Visual animation/image sequence showing technique
+        \item Step-by-step textual description
+        \item Key points highlighting critical aspects
+        \item Common mistakes section
+        \item Playback controls (play, pause, replay, adjust speed)
+    \end{itemize}
+    \item \textbf{Inputs:} User selection of simulation, playback controls
+    \item \textbf{Outputs:} Rendered simulation with synchronized text
+    \item \textbf{Priority:} High
+\end{itemize}
+
+\paragraph{FR-011: Performance Tracking}
+\begin{itemize}
+    \item \textbf{Description:} The system shall automatically track and store player simulation access and usage patterns
+    \item \textbf{Tracked Metrics:}
+    \begin{itemize}
+        \item Simulations accessed (technique name, timestamp)
+        \item Time spent per simulation
+        \item Total time spent on platform
+        \item Techniques completed (viewed fully)
+        \item Learning streaks (consecutive days of activity)
+    \end{itemize}
+    \item \textbf{Storage:} Data stored in user profile database
+    \item \textbf{Priority:} High
+\end{itemize}
+
+\paragraph{FR-012: Statistics Visualization}
+\begin{itemize}
+    \item \textbf{Description:} The system shall display player performance statistics through charts and summaries
+    \item \textbf{Visualizations:}
+    \begin{itemize}
+        \item Progress charts (techniques learned over time)
+        \item Category breakdown (batting vs bowling time distribution)
+        \item Activity calendar showing daily usage
+        \item Milestone achievements (e.g., "10 techniques completed")
+    \end{itemize}
+    \item \textbf{Priority:} Medium
+\end{itemize}
+
+\paragraph{FR-013: Help Desk Ticket Submission}
+\begin{itemize}
+    \item \textbf{Description:} The system shall allow players to submit queries or technical issues through help desk
+    \item \textbf{Inputs:} Subject, category (Technical Issue / Content Question / Account Issue), description, optional attachment
+    \item \textbf{Process:}
+    \begin{enumerate}
+        \item Player accesses Help Desk section
+        \item Player fills ticket submission form
+        \item System validates and saves ticket with "Open" status
+        \item System assigns unique ticket ID
+        \item Admin receives notification of new ticket
+        \item Player receives confirmation with ticket ID
+    \end{enumerate}
+    \item \textbf{Outputs:} Ticket created, notifications sent
+    \item \textbf{Priority:} Medium
+\end{itemize}
+
+\paragraph{FR-014: Ticket Status Tracking}
+\begin{itemize}
+    \item \textbf{Description:} The system shall allow players to view status and history of submitted tickets
+    \item \textbf{Display:} List of tickets with status (Open / In Progress / Resolved / Closed)
+    \item \textbf{Details:} Ticket ID, subject, submission date, last update, admin response
+    \item \textbf{Priority:} Low
+\end{itemize}
+
+\paragraph{FR-015: Event Viewing}
+\begin{itemize}
+    \item \textbf{Description:} The system shall display cricket-related events and announcements to players
+    \item \textbf{Display:} List of upcoming and past events with details
+    \item \textbf{Information:} Event title, date, venue, description, registration link (if applicable)
+    \item \textbf{Priority:} Low
+\end{itemize}
+
+\subsubsection{Admin Module Requirements}
+
+\paragraph{FR-016: Admin Dashboard}
+\begin{itemize}
+    \item \textbf{Description:} The system shall provide comprehensive admin dashboard with system overview
+    \item \textbf{Components:}
+    \begin{itemize}
+        \item User statistics (total users, pending approvals, active users)
+        \item Recent activity log
+        \item Open help desk tickets count
+        \item System health indicators
+        \item Quick action buttons
+    \end{itemize}
+    \item \textbf{Priority:} High
+\end{itemize}
+
+\paragraph{FR-017: User List Management}
+\begin{itemize}
+    \item \textbf{Description:} The system shall provide admin interface to view and manage all user accounts
+    \item \textbf{Features:}
+    \begin{itemize}
+        \item Paginated user list with search functionality
+        \item Filter by account status (Pending / Active / Suspended)
+        \item Sort by registration date, name, activity
+        \item View detailed user profile and statistics
+        \item Actions: Approve, Suspend, Delete account
+    \end{itemize}
+    \item \textbf{Priority:} High
+\end{itemize}
+
+\paragraph{FR-018: User Profile Viewing}
+\begin{itemize}
+    \item \textbf{Description:} The system shall allow admin to view complete user profiles and performance data
+    \item \textbf{Viewable Data:}
+    \begin{itemize}
+        \item Personal information (name, email, contact)
+        \item Account status and creation date
+        \item Complete activity history
+        \item Performance metrics and statistics
+        \item Submitted help desk tickets
+    \end{itemize}
+    \item \textbf{Priority:} Medium
+\end{itemize}
+
+\paragraph{FR-019: Simulation Content Upload}
+\begin{itemize}
+    \item \textbf{Description:} The system shall allow admin to upload new simulation content
+    \item \textbf{Inputs:}
+    \begin{itemize}
+        \item Technique name and category
+        \item Visual assets (images/animation files)
+        \item Step-by-step textual instructions
+        \item Key points and common mistakes
+        \item Metadata (difficulty level, estimated time)
+    \end{itemize}
+    \item \textbf{Process:} Form-based upload with file validation, content preview, publish action
+    \item \textbf{Priority:} High
+\end{itemize}
+
+\paragraph{FR-020: Simulation Content Editing}
+\begin{itemize}
+    \item \textbf{Description:} The system shall allow admin to modify existing simulation content
+    \item \textbf{Features:}
+    \begin{itemize}
+        \item Edit text descriptions
+        \item Replace visual assets
+        \item Update metadata
+        \item Version history tracking
+    \end{itemize}
+    \item \textbf{Priority:} Medium
+\end{itemize}
+
+\paragraph{FR-021: Help Desk Management}
+\begin{itemize}
+    \item \textbf{Description:} The system shall provide admin interface to manage and respond to user tickets
+    \item \textbf{Features:}
+    \begin{itemize}
+        \item View all tickets with filtering (Open / In Progress / Resolved / Closed)
+        \item Sort by submission date, priority, category
+        \item View ticket details and user information
+        \item Update ticket status
+        \item Add admin response/comments
+        \item Close resolved tickets
+    \end{itemize}
+    \item \textbf{Notifications:} User receives email when admin responds or updates status
+    \item \textbf{Priority:} Medium
+\end{itemize}
+
+\paragraph{FR-022: Event Management}
+\begin{itemize}
+    \item \textbf{Description:} The system shall allow admin to create, edit, and delete event announcements
+    \item \textbf{Inputs:} Event title, date, time, venue, description, registration link, image (optional)
+    \item \textbf{Operations:} Create new event, edit existing event, delete event, mark as past/archived
+    \item \textbf{Display:} Events shown to players in chronological order
+    \item \textbf{Priority:} Low
+\end{itemize}
+
+\paragraph{FR-023: Analytics and Reporting}
+\begin{itemize}
+    \item \textbf{Description:} The system shall generate usage analytics and reports for administrators
+    \item \textbf{Reports:}
+    \begin{itemize}
+        \item User growth trends
+        \item Most accessed simulations
+        \item Average time spent per user
+        \item Category popularity (batting vs bowling)
+        \item User engagement metrics
+        \item Help desk ticket trends
+    \end{itemize}
+    \item \textbf{Export:} Reports exportable as CSV or PDF
+    \item \textbf{Priority:} Low
+\end{itemize}
+
+\subsection{External Interface Requirements}
+
+\subsubsection{User Interface Requirements}
+
+\paragraph{UI-001: General UI Principles}
+\begin{itemize}
+    \item \textbf{Design Philosophy:} Clean, intuitive, cricket-themed interface
+    \item \textbf{Color Scheme:} Cricket-inspired palette (greens, whites, blues) with high contrast for readability
+    \item \textbf{Typography:} Clear, readable fonts; minimum 14pt for body text
+    \item \textbf{Responsiveness:} Adaptive layout supporting desktop (1920x1080 to 1366x768) and mobile (375x667 to 414x896)
+    \item \textbf{Navigation:} Consistent header/sidebar navigation across all pages
+    \item \textbf{Feedback:} Visual feedback for all user actions (loading indicators, success/error messages)
+\end{itemize}
+
+\paragraph{UI-002: Player Interface Layout}
+\begin{itemize}
+    \item \textbf{Header:} Logo, navigation menu (Dashboard, Simulations, Help, Profile), logout button
+    \item \textbf{Dashboard:} Grid/card layout for statistics and quick links
+    \item \textbf{Simulation Browser:} Category cards with icons and technique counts
+    \item \textbf{Simulation Viewer:} Full-width player area with controls and side panel for instructions
+    \item \textbf{Forms:} Clear labels, inline validation, helpful error messages
+\end{itemize}
+
+\paragraph{UI-003: Admin Interface Layout}
+\begin{itemize}
+    \item \textbf{Sidebar:} Vertical navigation menu with sections (Dashboard, Users, Content, Help Desk, Events, Reports)
+    \item \textbf{Data Tables:} Sortable, filterable tables with pagination and action buttons
+    \item \textbf{Forms:} Comprehensive forms with rich text editors for content management
+    \item \textbf{Modals:} Confirmation dialogs for destructive actions
+\end{itemize}
+\end{itemize}
+
+\subsubsection{Hardware Interface Requirements}
+
+\paragraph{HW-001: Client Device Requirements}
+\begin{itemize}
+    \item \textbf{Minimum Specifications:}
+    \begin{itemize}
+        \item Processor: 1 GHz dual-core
+        \item RAM: 2 GB
+        \item Display: 1024x768 resolution
+        \item Internet: 2 Mbps connection
+        \item Browser: Modern browser (Chrome 90+, Firefox 88+, Safari 14+, Edge 90+)
+    \end{itemize}
+    \item \textbf{Recommended Specifications:}
+    \begin{itemize}
+        \item Processor: 2 GHz quad-core
+        \item RAM: 4 GB+
+        \item Display: 1920x1080 resolution
+        \item Internet: 5 Mbps+ connection
+    \end{itemize}
+\end{itemize}
+
+\paragraph{HW-002: Server Requirements}
+\begin{itemize}
+    \item \textbf{Web Server:}
+    \begin{itemize}
+        \item Cloud-based virtual machine or container
+        \item 2 CPU cores, 4 GB RAM minimum
+        \item 50 GB SSD storage for application
+        \item Auto-scaling capability for traffic spikes
+    \end{itemize}
+    \item \textbf{Database Server:}
+    \begin{itemize}
+        \item Managed database service or dedicated instance
+        \item 2 GB RAM minimum
+        \item 20 GB storage initially (scalable)
+    \end{itemize}
+\end{itemize}
+\newpage 
+\section{System Features}
+
+This section describes the major features of Namal Criko, organized by functional area. Each feature includes detailed description, stimulus/response sequences, and associated functional requirements.
+
+\subsection{Cricket Technique Simulation Engine}
+
+\subsubsection{Description and Priority}
+The simulation engine is the core feature of Namal Criko, providing interactive visual demonstrations of cricket techniques. This is the highest priority feature as it delivers the primary value proposition.
+
+\textbf{Priority:} High
+
+\subsubsection{Stimulus/Response Sequences}
+\begin{enumerate}
+    \item \textbf{Stimulus:} Player selects "Batting" category from dashboard
+    \item \textbf{Response:} System displays subcategories (Defensive, Attacking Shots)
+    \item \textbf{Stimulus:} Player selects "Attacking Shots"
+    \item \textbf{Response:} System displays list of attacking shot techniques
+    \item \textbf{Stimulus:} Player clicks on "Cover Drive"
+    \item \textbf{Response:} System loads and displays Cover Drive simulation with controls and instructions
+    \item \textbf{Stimulus:} Player clicks "Play" button
+    \item \textbf{Response:} Animation plays with synchronized textual steps
+    \item \textbf{Stimulus:} Player clicks "Replay" or adjusts speed
+    \item \textbf{Response:} System restarts animation or changes playback speed
+\end{enumerate}
+
+\subsubsection{Functional Requirements}
+\begin{itemize}
+    \item FR-009: Simulation Categories Navigation
+    \item FR-010: Simulation Viewing
+    \item FR-011: Performance Tracking (automatically log access)
+\end{itemize}
+
+\subsection{User Account Management System}
+
+\subsubsection{Description and Priority}
+Comprehensive system for user registration, authentication, profile management, and administrative approval workflow.
+
+\textbf{Priority:} High
+
+\subsubsection{Stimulus/Response Sequences}
+\begin{enumerate}
+    \item \textbf{Stimulus:} New user visits platform and clicks "Register"
+    \item \textbf{Response:} System displays registration form
+    \item \textbf{Stimulus:} User submits completed form
+    \item \textbf{Response:} System validates, creates account with "Pending" status, sends confirmation email
+    \item \textbf{Stimulus:} Admin receives notification and logs into admin panel
+    \item \textbf{Response:} System displays pending approvals list
+    \item \textbf{Stimulus:} Admin reviews user details and clicks "Approve"
+    \item \textbf{Response:} System changes status to "Active", sends approval email to user
+    \item \textbf{Stimulus:} User attempts to login with credentials
+    \item \textbf{Response:} System authenticates and redirects to player dashboard
+\end{enumerate}
+
+\subsubsection{Functional Requirements}
+\begin{itemize}
+    \item FR-001: User Registration
+    \item FR-002: Admin Account Approval
+    \item FR-003: User Login (Player)
+    \item FR-004: Admin Login
+    \item FR-005: Password Reset
+    \item FR-006: Session Management
+    \item FR-008: Profile Management
+\end{itemize}
+
+\subsection{Performance Analytics and Progress Tracking}
+
+\subsubsection{Description and Priority}
+Automated tracking and visualization of player learning progress and usage patterns.
+
+\textbf{Priority:} Medium
+
+\subsubsection{Stimulus/Response Sequences}
+\begin{enumerate}
+    \item \textbf{Stimulus:} Player accesses simulation
+    \item \textbf{Response:} System silently logs access timestamp, technique name, player ID
+    \item \textbf{Stimulus:} Player completes viewing simulation
+    \item \textbf{Response:} System calculates time spent, marks technique as "viewed"
+    \item \textbf{Stimulus:} Player navigates to "My Statistics" page
+    \item \textbf{Response:} System queries database, calculates metrics, generates visualizations
+    \item \textbf{Stimulus:} Player views progress chart
+    \item \textbf{Response:} System displays line chart of techniques learned over time
+\end{enumerate}
+
+\subsubsection{Functional Requirements}
+\begin{itemize}
+    \item FR-011: Performance Tracking
+    \item FR-012: Statistics Visualization
+\end{itemize}
+
+\subsection{Help Desk Ticketing System}
+
+\subsubsection{Description and Priority}
+Support system enabling players to submit queries and admins to manage/respond to tickets.
+
+\textbf{Priority:} Medium
+
+\subsubsection{Stimulus/Response Sequences}
+\begin{enumerate}
+    \item \textbf{Stimulus:} Player encounters issue and accesses Help Desk
+    \item \textbf{Response:} System displays ticket submission form
+    \item \textbf{Stimulus:} Player fills form with issue details and submits
+    \item \textbf{Response:} System creates ticket with unique ID, notifies admin, shows confirmation
+    \item \textbf{Stimulus:} Admin logs in and views Help Desk panel
+    \item \textbf{Response:} System displays list of open tickets
+    \item \textbf{Stimulus:} Admin selects ticket and adds response
+    \item \textbf{Response:} System saves response, sends email to player, updates ticket status
+    \item \textbf{Stimulus:} Admin marks ticket as "Resolved"
+    \item \textbf{Response:} System updates status, notifies player
+\end{enumerate}
+
+\subsubsection{Functional Requirements}
+\begin{itemize}
+    \item FR-013: Help Desk Ticket Submission
+    \item FR-014: Ticket Status Tracking
+    \item FR-021: Help Desk Management
+\end{itemize}
+
+\subsection{Content Management System}
+
+\subsubsection{Description and Priority}
+Administrative interface for uploading, editing, and managing simulation content.
+
+\textbf{Priority:} High
+
+\subsubsection{Stimulus/Response Sequences}
+\begin{enumerate}
+    \item \textbf{Stimulus:} Admin decides to add new bowling technique
+    \item \textbf{Response:} Admin navigates to Content Management section
+    \item \textbf{Stimulus:} Admin clicks "Add New Simulation"
+    \item \textbf{Response:} System displays content upload form
+    \item \textbf{Stimulus:} Admin fills form with technique details, uploads assets
+    \item \textbf{Response:} System validates files, saves to database and file storage
+    \item \textbf{Stimulus:} Admin clicks "Publish"
+    \item \textbf{Response:} System makes content visible to players, shows success confirmation
+\end{enumerate}
+
+\subsubsection{Functional Requirements}
+\begin{itemize}
+    \item FR-019: Simulation Content Upload
+    \item FR-020: Simulation Content Editing
+\end{itemize}
+
+\subsection{Event and Announcement Management}
+
+\subsubsection{Description and Priority}
+Feature allowing admins to post cricket-related events and players to view them.
+
+\textbf{Priority:} Low
+
+\subsubsection{Stimulus/Response Sequences}
+\begin{enumerate}
+    \item \textbf{Stimulus:} Admin wants to announce upcoming cricket match
+    \item \textbf{Response:} Admin accesses Event Management section
+    \item \textbf{Stimulus:} Admin fills event details form and submits
+    \item \textbf{Response:} System saves event, displays in events list for players
+    \item \textbf{Stimulus:} Player navigates to Events page
+    \item \textbf{Response:} System displays chronological list of upcoming and past events
+\end{enumerate}
+
+\subsubsection{Functional Requirements}
+\begin{itemize}
+    \item FR-015: Event Viewing
+    \item FR-022: Event Management
+\end{itemize}
+
+\newpage
+
+\section{Non-Functional Requirements}
+
+\subsection{Performance Requirements}
+
+\paragraph{NFR-001: Response Time}
+\begin{itemize}
+    \item Page load time shall not exceed 3 seconds on standard broadband (5 Mbps)
+    \item Simulation playback shall start within 2 seconds of user clicking "Play"
+    \item Database queries shall return results within 1 second for 95\% of requests
+    \item Search functionality shall display results within 2 seconds
+\end{itemize}
+
+\paragraph{NFR-002: Concurrent Users}
+\begin{itemize}
+    \item System shall support minimum 500 concurrent users without significant degradation
+    \item System shall scale to handle 1000 concurrent users with optimized performance
+    \item Database shall handle 100 simultaneous read/write operations
+\end{itemize}
+
+\paragraph{NFR-003: Throughput}
+\begin{itemize}
+    \item Web server shall handle 50 requests per second during peak usage
+    \item Static assets (images, CSS, JS) shall be delivered efficiently via caching
+    \item API endpoints shall process 30 requests per second for dynamic content
+\end{itemize}
+
+\paragraph{NFR-004: Resource Utilization}
+\begin{itemize}
+    \item Server CPU usage shall not exceed 80\% under normal load
+    \item Memory usage shall remain below 70\% of allocated capacity
+    \item Database storage shall be optimized with indexing for frequently queried fields
+\end{itemize}
+
+\subsection{Safety Requirements}
+
+\paragraph{NFR-005: Data Safety}
+\begin{itemize}
+    \item System shall implement regular automated database backups (daily incremental, weekly full)
+    \item Backup retention period shall be minimum 30 days
+    \item Disaster recovery plan shall ensure system restoration within 24 hours
+\end{itemize}
+
+\paragraph{NFR-006: User Data Protection}
+\begin{itemize}
+    \item Personal user information (passwords) shall be encrypted using industry-standard hashing algorithms (bcrypt)
+    \item Passwords shall never be stored in plain text or logged
+    \item Password reset tokens shall be single-use and expire after 1 hour
+\end{itemize}
+
+\subsection{Security Requirements}
+
+\paragraph{NFR-007: Authentication Security}
+\begin{itemize}
+    \item All authentication attempts shall be logged for security audit
+    \item Accounts shall be locked after 5 consecutive failed login attempts
+    \item Session tokens shall be invalidated after 120 minutes of inactivity
+    \item Re-authentication required for sensitive operations (password change, email update)
+\end{itemize}
+
+\paragraph{NFR-008: Authorization Controls}
+\begin{itemize}
+    \item Role-based access control (RBAC) shall enforce separation between player and admin functions
+    \item Admin actions shall require elevated privilege verification
+    \item Users shall only access their own data unless specifically authorized
+    \item API endpoints shall validate user permissions for each request
+\end{itemize}
+
+\paragraph{NFR-009: Data Transmission Security}
+\begin{itemize}
+    \item All client-server communication shall use HTTPS (TLS 1.2 or higher)
+    \item Secure headers (HSTS, CSP) shall be implemented to prevent common web vulnerabilities
+    \item Cookies shall be marked as secure and HTTP-only where applicable
+\end{itemize}
+
+\paragraph{NFR-010: Input Validation}
+\begin{itemize}
+    \item All user inputs shall be validated both client-side and server-side
+    \item SQL injection prevention through parameterized queries or ORM
+    \item Cross-site scripting (XSS) protection through output encoding
+    \item File uploads shall be scanned for malware and restricted to approved formats
+\end{itemize}
+
+\subsection{Software Quality Attributes}
+
+\paragraph{NFR-011: Reliability}
+\begin{itemize}
+    \item System shall maintain 99\% uptime during academic periods
+    \item Mean Time Between Failures (MTBF) shall exceed 720 hours (30 days)
+    \item Mean Time To Repair (MTTR) shall be less than 4 hours for critical failures
+    \item Error rate shall not exceed 1\% of all user interactions
+\end{itemize}
+
+\paragraph{NFR-012: Availability}
+\begin{itemize}
+    \item System shall be available 24/7 with scheduled maintenance windows announced in advance
+    \item Scheduled maintenance shall not exceed 4 hours per month
+    \item High-availability architecture with redundant components where feasible
+    \item Graceful degradation when dependent services (email) are unavailable
+\end{itemize}
+
+\paragraph{NFR-013: Maintainability}
+\begin{itemize}
+    \item Codebase shall follow consistent coding standards and documentation
+    \item Modular architecture shall allow independent updates to components
+    \item Configuration shall be externalized for easy environment-specific adjustments
+    \item Comprehensive logging shall facilitate debugging and issue resolution
+\end{itemize}
+
+\paragraph{NFR-014: Scalability}
+\begin{itemize}
+    \item Architecture shall support horizontal scaling for increased user load
+    \item Database design shall accommodate growth to 10,000 users
+    \item Simulation content shall scale to 500+ techniques without performance degradation
+    \item Stateless design shall allow load distribution across multiple servers
+\end{itemize}
+
+\paragraph{NFR-015: Usability}
+\begin{itemize}
+    \item System shall achieve 85\% satisfaction rating in user acceptance testing
+    \item New users shall be able to complete first simulation within 5 minutes of registration
+    \item Interface shall comply with Web Content Accessibility Guidelines (WCAG) 2.1 Level AA
+    \item Help documentation shall be context-sensitive and easily accessible
+\end{itemize}
+
+\paragraph{NFR-016: Portability}
+\begin{itemize}
+    \item Web application shall function correctly across Chrome, Firefox, Safari, and Edge browsers
+    \item Responsive design shall provide optimal experience on desktop, tablet, and mobile devices
+    \item Application shall be deployable on major cloud platforms (AWS, Azure, GCP)
+    \item Database migration shall be scripted and reversible
+\end{itemize}
+
+\subsection{Operational Requirements}
+
+\paragraph{NFR-017: Deployment Requirements}
+\begin{itemize}
+    \item System shall support automated deployment using CI/CD pipelines
+    \item Database migrations shall be version-controlled and executable without downtime
+    \item Rollback procedure shall be documented and tested for failed deployments
+    \item Environment configuration shall be separate from application code
+\end{itemize}
+
+\paragraph{NFR-018: Monitoring Requirements}
+\begin{itemize}
+    \item System shall log all errors and critical events for monitoring
+    \item Performance metrics (response time, error rates, user counts) shall be collected
+    \item Alerts shall be configured for system failures or performance degradation
+    \item Admin dashboard shall display key system health indicators
+\end{itemize}
+
+\paragraph{NFR-019: Backup Requirements}
+\begin{itemize}
+    \item Full system backup shall be performed weekly
+    \item Incremental backups shall be performed daily
+    \item Backup restoration procedure shall be tested quarterly
+    \item Backups shall be stored securely with encryption
+\end{itemize}
+
+\paragraph{NFR-020: Compliance Requirements}
+\begin{itemize}
+    \item System shall comply with Namal University IT policies
+    \item Data handling shall follow university privacy guidelines
+    \item All third-party components shall be properly licensed for educational use
+    \item Security audit shall be conducted before production deployment
+\end{itemize}
+
+\newpage
+
+\section{Other Requirements}
+
+\subsection{Development Requirements}
+
+\paragraph{OR-001: Development Methodology}
+\begin{itemize}
+    \item Project shall follow Agile development methodology with 2-week sprints
+    \item Regular code reviews shall be conducted for quality assurance
+    \item Version control shall be maintained using Git with descriptive commit messages
+    \item Continuous integration shall be implemented with automated testing
+\end{itemize}
+
+\paragraph{OR-002: Documentation Requirements}
+\begin{itemize}
+    \item Comprehensive technical documentation shall be maintained
+    \item API documentation shall be generated and kept current
+    \item User manuals shall be created for both player and admin roles
+    \item Deployment and maintenance procedures shall be documented
+\end{itemize}
+
+\paragraph{OR-003: Testing Requirements}
+\begin{itemize}
+    \item Unit testing shall achieve 80\% code coverage for critical modules
+    \item Integration testing shall validate all system components work together
+    \item User acceptance testing shall be conducted with representative users
+    \item Performance testing shall validate system under expected load conditions
+    \item Security testing shall include vulnerability scanning and penetration testing
+\end{itemize}
+
+\paragraph{OR-004: Coding Standards}
+\begin{itemize}
+    \item Code shall follow consistent naming conventions and formatting
+    \item Comments shall explain complex algorithms and business logic
+    \item Error handling shall be implemented for all possible failure scenarios
+    \item Configuration shall be separated from code for different environments
+\end{itemize}
+
+\subsection{Legal and Regulatory Requirements}
+
+\paragraph{OR-005: Intellectual Property}
+\begin{itemize}
+    \item All source code shall be owned by Namal University
+    \item Third-party libraries shall be properly attributed and licensed
+    \item Cricket technique content shall be original or properly licensed
+    \item User agreement shall specify terms of use and intellectual property rights
+\end{itemize}
+
+\paragraph{OR-006: Data Privacy}
+\begin{itemize}
+    \item Privacy policy shall comply with applicable data protection regulations
+    \item User consent shall be obtained for data collection and processing
+    \item Data retention periods shall be defined and implemented
+    \item User data export and deletion procedures shall be available
+\end{itemize}
+
+\paragraph{OR-007: Accessibility Compliance}
+\begin{itemize}
+    \item System shall comply with Web Content Accessibility Guidelines (WCAG) 2.1 Level AA
+    \item Accessibility testing shall be conducted with screen readers
+    \item Keyboard navigation shall be fully supported
+    \item Alternative text shall be provided for all non-text content
+\end{itemize}
+
+\subsection{System Support Requirements}
+
+\paragraph{OR-008: Training Requirements}
+\begin{itemize}
+    \item Administrator training shall be provided for system management
+    \item User orientation materials shall be developed for new players
+    \item Technical documentation shall be maintained for development team
+\end{itemize}
+
+\paragraph{OR-009: Maintenance Requirements}
+\begin{itemize}
+    \item Regular security updates shall be applied to all system components
+    \item Performance monitoring shall be conducted continuously
+    \item Backup procedures shall be tested quarterly
+    \item Issue tracking system shall be maintained for bug reports
+\end{itemize}
+
+\paragraph{OR-010: Disaster Recovery}
+\begin{itemize}
+    \item Disaster recovery plan shall be documented and tested annually
+    \item Critical system recovery time objective (RTO) shall be 24 hours
+    \item Data recovery point objective (RPO) shall be 24 hours
+    \item Backup systems shall be located separately from primary systems
+\end{itemize}
+
+\subsection{Sustainability Requirements}
+
+\paragraph{OR-011: Environmental Considerations}
+\begin{itemize}
+    \item System shall optimize resource usage to minimize energy consumption
+    \item Code efficiency shall be prioritized to reduce server load
+    \item Sustainable hosting options shall be considered where available
+\end{itemize}
+
+\paragraph{OR-012: Long-term Viability}
+\begin{itemize}
+    \item System architecture shall support future enhancements
+    \item Technology stack shall use well-supported frameworks and libraries
+    \item Documentation shall enable knowledge transfer to new team members
+    \item Exit strategy shall be defined for system decommissioning if needed
+\end{itemize}
+
+\appendix
+
+\section{Appendix A: Glossary}
+\begin{longtable}{|p{4cm}|p{10cm}|}
+\hline
+\textbf{Term} & \textbf{Detailed Definition} \\ \hline
+\endfirsthead
+\hline
+\textbf{Term} & \textbf{Detailed Definition} \\ \hline
+\endhead
+\hline
+\endfoot
+
+\textbf{Simulation} & Interactive digital representation of cricket technique showing body movements, timing, and execution steps through visual animations accompanied by textual instructions. \\ \hline
+
+\textbf{Player} & Registered user who accesses the platform to learn cricket techniques through simulations. Players have limited permissions focused on learning activities. \\ \hline
+
+\textbf{Administrator} & Privileged user responsible for managing the platform, including user approvals, content management, help desk resolution, and system monitoring. \\ \hline
+
+\textbf{Help Desk Ticket} & Formal record of user query or issue submitted through the platform's help desk system, tracked through resolution lifecycle. \\ \hline
+
+\textbf{Performance Tracking} & Automated system for recording user interactions with simulations, including access frequency, duration, and completion metrics. \\ \hline
+
+\textbf{Account Approval Workflow} & Process where new user registrations require manual review and approval by administrator before granting system access. \\ \hline
+
+\textbf{Content Management} & Administrative functions for uploading, editing, organizing, and publishing simulation content and platform announcements. \\ \hline
+
+\textbf{User Dashboard} & Personalized interface displaying user-specific information, statistics, quick links, and notifications. \\ \hline
+
+\textbf{Admin Dashboard} & Management interface providing system overview, user statistics, content controls, and administrative tools. \\ \hline
+
+\textbf{Session Management} & System mechanism for maintaining authenticated user state across multiple requests with timeout and security controls. \\ \hline
+
+\textbf{Event Management} & Feature allowing administrators to post cricket-related events, tournaments, or announcements for user visibility. \\ \hline
+
+\textbf{Responsive Design} & Web design approach ensuring optimal viewing and interaction experience across range of devices from desktop to mobile. \\ \hline
+
+\textbf{CRUD Operations} & Fundamental data operations: Create (add new records), Read (retrieve records), Update (modify records), Delete (remove records). \\ \hline
+
+\textbf{API Endpoint} & Specific URL where API can be accessed to perform certain operation or retrieve specific data. \\ \hline
+
+\textbf{Authentication} & Process of verifying user identity through credentials (email/password). \\ \hline
+
+\textbf{Authorization} & Process of determining what authenticated user is allowed to access or perform within system. \\ \hline
+
+\textbf{Data Encryption} & Conversion of data into coded form to prevent unauthorized access during transmission or storage. \\ \hline
+
+\textbf{Load Testing} & Performance testing to determine system behavior under expected and peak user load conditions. \\ \hline
+
+\textbf{Uptime} & Measure of time system is operational and available to users, expressed as percentage of total time. \\ \hline
+
+\textbf{Version Control} & System for tracking changes to source code over time, enabling collaboration and change management. \\ \hline
+
+\end{longtable}
+
+\section{Appendix B: Analysis Models}
+
+\subsection{Use Case Diagram}
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.9\textwidth]{use_case_diagram.png}
+\caption{High-level Use Case Diagram showing actors (Player, Admin) and major system interactions}
+\label{fig:use_cases}
+\end{figure}
+
+
+\end{figure}
+
+\section{Appendix C: To Be Determined List}
+
+\begin{itemize}
+    \item \textbf{TBD-001:} Final selection of technology stack (frameworks, libraries)
+    \item \textbf{TBD-002:} Hosting platform selection (university servers vs cloud)
+    \item \textbf{TBD-003:} Database system selection (MySQL vs PostgreSQL vs MongoDB)
+    \item \textbf{TBD-004:} Email service provider for system notifications
+    \item \textbf{TBD-005:} Specific cricket techniques to be included in initial release
+    \item \textbf{TBD-006:} Visual assets source (custom creation vs licensed content)
+    \item \textbf{TBD-007:} Domain name registration and configuration
+    \item \textbf{TBD-008:} SSL certificate provider and configuration
+    \item \textbf{TBD-009:} Backup storage location and retention policy details
+    \item \textbf{TBD-010:} Monitoring tool selection and configuration
+    \item \textbf{TBD-011:} User acceptance testing participant selection
+    \item \textbf{TBD-012:} Go-live date and deployment schedule
+\end{itemize}
+
+
+\end{document}
