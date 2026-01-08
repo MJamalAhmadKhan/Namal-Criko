@@ -13,7 +13,7 @@ It is an interactive cricket simulation application designed to help students an
 | Qazi Muhammad Auon Farooqi | Num-Bscs-2024-64 | bscs24f64@namal.edu.pk     |
 | Breera Ijaz              | Num-Bscs-2024-20 | bscs24f20@namal.edu.pk     |
 
-**Instructor:** Asia Batool  
+**Instructor:** Asiya Batool  
 **Requirement Provider:** Mr. Ammar Ahmad Khan  
 
 ## Meeting Minutes
