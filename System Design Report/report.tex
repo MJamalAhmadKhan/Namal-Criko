@@ -1,0 +1,496 @@
+\documentclass[12pt,a4paper]{article}
+
+% Package imports
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{float} % ADDED: For [H] placement
+
+% Hyperref setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+% Header and footer
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{NAMALCRIKO - Design Report}
+\fancyhead[R]{Milestone 3}
+\fancyfoot[C]{\thepage}
+
+\begin{document}
+
+% ==================== TITLE PAGE ====================
+\begin{titlepage}
+    \centering
+    
+    % University Logo
+    \includegraphics[width=0.3\textwidth]{log.png}\\[1cm]
+    
+    {\Large\textbf{System Design Report}}\\[0.3cm]
+    {\Large\textbf{(Milestone 3)}}\\[1cm]
+    
+    {\large\textbf{CSC-225 – Software Engineering}}\\[0.3cm]
+    {\large Department of Computer Science}\\[0.3cm]
+    {\large Namal University, Mianwali}\\[1.0cm]
+    
+    {\LARGE\textbf{Project Title: Namal Criko}}\\[0.3cm]
+    {\Large Cricket Simulation Trainer}\\[1cm]
+    
+    {\large\textbf{Team Members:}}\\[0.5cm]
+    \begin{tabular}{lll}
+        \textbf{Name} & \textbf{Roll No.} & \textbf{Email} \\
+        \hline
+        M. Jamal Ahmad Khan & Num-Bscs-2024-51 & bscs24f51@namal.edu.pk \\
+        Qazi M. Auon Farooqi & Num-Bscs-2024-64 & bscs24f64@namal.edu.pk \\
+        Breera Ijaz & Num-Bscs-2024-20 & bscs24f20@namal.edu.pk \\
+    \end{tabular}\\[2cm]
+    
+    {\large Instructor: Asiya Batool}\\[0.3cm]
+    {\large Requirement Provider: Mr. Ammar Ahmad Khan}\\[0.3cm]
+    {\large Semester: Fall 2025}\\[0.3cm]
+    {\large Submission Date: January 18, 2026}
+    
+\end{titlepage}
+
+% ==================== TABLE OF CONTENTS ====================
+\tableofcontents
+\newpage
+
+% ==================== 1. INTRODUCTION ====================
+\section{Introduction}
+
+Namal Criko is a web-based cricket simulation training platform designed for Namal University students. The system provides interactive simulations of cricket techniques (batting and bowling) enabling students to learn and practice in a virtual environment.
+
+This Design Report translates the approved Software Requirements Specification (SRS) into a complete system design including behavioral diagrams, structural diagrams, system architecture, prototypes, and traceability documentation.
+
+% ==================== 2. DESIGN ASSUMPTIONS & CONSTRAINTS ====================
+\section{Design Assumptions and Constraints}
+
+\subsection{Design Assumptions}
+
+\begin{enumerate}[itemsep=0.3em]
+    \item Users have basic web browsing skills and cricket knowledge
+    \item Admin approval occurs within 24-48 hours
+    \item Users provide accurate registration information
+    \item University network provides adequate bandwidth
+    \item Administrative staff available for user approval
+    \item Cricket experts validate technique accuracy
+    \item University continues post-development support
+\end{enumerate}
+
+\subsection{Design Constraints}
+
+\textbf{Technology:} Limited to open-source frameworks \\
+\textbf{Budget:} Zero-budget project \\
+\textbf{Team:} Three members with limited experience \\
+\textbf{Timeline:} One academic year \\
+\textbf{Hosting:} Free-tier cloud services \\
+\textbf{Hardware:} Must work on student devices \\
+\textbf{Software:} No proprietary integrations \\
+\textbf{Operational:} Limited post-semester maintenance
+
+% ==================== 3. KEY DESIGN DECISIONS ====================
+\section{Key Design Decisions}
+
+\subsection{DFD Decomposition}
+
+\textbf{Level 0:} System boundary with external entities (Player, Admin, Email Service) \\
+\textbf{Level 1:} Six major processes (User registration and login, Admin Controller, Simulation Manager, Help and ticket manager, Notification and Event Manager, Report and analysis) \\
+\textbf{Level 2:} Detailed decomposition of complex processes
+
+\textbf{Justification:} Follows functional logic; single responsibility per process
+
+\subsection{Class Relationships}
+
+\textbf{Inheritance:} \textit{Player} and \textit{Coach} extend the base \textit{User} class to share authentication and profile attributes while maintaining specific roles. \\
+
+\textbf{Association:} \textit{Player} has a one-to-many relationship with \textit{TrainingSession}; a player can perform multiple drills over time. \\
+
+\textbf{Composition:} \textit{Simulation} consists of \textit{Frames} (e.g., Stance, Impact, Follow-through). If a simulation is deleted, these specific 3D frames are also destroyed. \\
+
+\textbf{Aggregation:} \textit{CoachingManual} aggregates \textit{TechniqueGuides}. The guides exist independently of the manual and can be updated or reorganized.
+
+\subsection{Justification for Class Relationships}
+
+\begin{itemize}
+    \item \textbf{Inheritance} was chosen to simplify the User Management module, ensuring that both Coaches and Players follow the same security protocols while having different dashboard access.
+    \item \textbf{Composition} for the Simulation class ensures data integrity; since a "Frame" (like the Forward Defense stance) has no meaning outside the context of a training session, it is strictly bound to its parent object.
+    \item \textbf{Separation of Concerns:} By decoupling the \textit{AIAnalysisEngine} from the \textit{UIController}, we ensure the 3D simulation remains performant even during heavy data processing.
+\end{itemize}
+
+\subsection{System Architecture}
+
+\textbf{Architecture:} Three-tier (Presentation-Application-Data)
+
+\begin{itemize}
+    \item \textbf{Presentation (Frontend):} Developed using modern web technologies to render the 3D Cricket Simulation and the "Coaching Manual" dashboard.
+    \item \textbf{Application (Logic):} This layer processes simulations frames to present techniques like the "Forward Defense" as per ideal standards.
+    \item \textbf{Data (Storage):} A secure database layer that manages player profiles, training history, and the library of high-fidelity "Ideal Technique" reference frames.
+\end{itemize}
+
+\textbf{UI:} Desktop Familiar design
+
+\clearpage
+
+% ==================== 4. SYSTEM MODELING DIAGRAMS ====================
+\section{System Modeling Diagrams}
+
+\subsection{Use Case Diagram}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Use_case.png}
+    \caption{Use Case Diagram}
+\end{figure}
+
+\clearpage
+\subsection{Data Flow Diagrams}
+
+\subsubsection{DFD Level 0}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{df0.jpeg}
+    \caption{DFD Level 0 - Context Diagram}
+\end{figure}
+
+\clearpage
+\subsubsection{DFD Level 1}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{Dfd 1.jpeg}
+    \caption{DFD Level 1 Diagram}
+\end{figure}
+
+\clearpage
+\subsubsection{DFD Level 2}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{DFD2.jpeg}
+    \caption{DFD Level 2}
+\end{figure}
+
+\clearpage
+\subsection{Sequence Diagrams}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Registration.png}
+    \caption{SD-01: User Registration}
+\end{figure}
+
+\clearpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Player Login.png}
+    \caption{SD-02: User Login}
+\end{figure}
+
+\clearpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Reset pas.png}
+    \caption{SD-03: Password Reset}
+\end{figure}
+
+\clearpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Simulation acess and view.png}
+    \caption{SD-04: Simulation Viewing}
+\end{figure}
+
+\clearpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Help desk ticket sub seq.png}
+    \caption{SD-05: Help Desk Ticket Submission}
+\end{figure}
+
+\clearpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Admin side help desk seq.png}
+    \caption{SD-06: Admin Ticket Response}
+\end{figure}
+
+\clearpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Event mangement seq.png}
+    \caption{SD-07: Event Management}
+\end{figure}
+
+\clearpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Admin user account mang seq.png}
+    \caption{SD-08: Admin User Management}
+\end{figure}
+
+\clearpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Semulation update seq.png}
+    \caption{SD-09: Simulation Management}
+\end{figure}
+
+\clearpage
+\subsection{Activity Diagrams}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Player profile man.png}
+    \caption{ACT-01: Profile Management}
+\end{figure}
+
+\clearpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Untitled Diagram.drawio (2).png}
+    \caption{ACT-02: New Registration}
+\end{figure}
+
+\clearpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Admin dashBoard.png}
+    \caption{ACT-03: Admin Dashboard}
+\end{figure}
+
+\clearpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Performance and analysis.png}
+    \caption{ACT-04: Analytics Report Generation}
+\end{figure}
+
+\clearpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Learnig activ.png}
+    \caption{ACT-05: Simulation Navigation}
+\end{figure}
+
+\clearpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Content management.png}
+    \caption{ACT-06: Content Management}
+\end{figure}
+
+\clearpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{help desk activ.png}
+    \caption{ACT-07: Help Desk Management}
+\end{figure}
+
+\clearpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Event adds act.png}
+    \caption{ACT-08: Ads and Events}
+\end{figure}
+
+\clearpage
+\subsection{Class Diagram}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{class diagram 2.png}
+    \caption{Class Diagram}
+\end{figure}
+
+\clearpage
+\subsection{Component Diagrams}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{System Arcitecture diagrams.png}
+    \caption{Component Diagram - System Architecture}
+\end{figure}
+
+\clearpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Untitled Diagram.drawio (3).png}
+    \caption{Component Diagram - Application  Layer}
+\end{figure}
+
+
+\clearpage
+\subsection{Architecture Diagram}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{System Arcitecture diagrams.png}
+    \caption{System Architecture}
+\end{figure}
+
+\clearpage
+
+% ==================== 5. REQUIREMENTS-DESIGN TRACEABILITY ====================
+\section{Requirements-Design Traceability}
+
+\textbf{Legend:} UC (Use Case), DFD (Data Flow Diagram), SD (Sequence Diagram), ACT (Activity Diagram), CD (Class Diagram), UI (User Interface), ARCH (Architecture)
+
+\subsection{Authentication \& Authorization}
+
+\begin{longtable}{|p{1cm}|p{3cm}|p{0.7cm}|p{0.8cm}|p{0.7cm}|p{0.7cm}|p{0.7cm}|p{0.7cm}|p{0.9cm}|}
+\caption{Traceability - Authentication} \\
+\hline
+\textbf{ID} & \textbf{Requirement} & \textbf{UC} & \textbf{DFD} & \textbf{SD} & \textbf{ACT} & \textbf{CD} & \textbf{UI} & \textbf{ARCH} \\
+\hline
+\endfirsthead
+\hline
+\textbf{ID} & \textbf{Requirement} & \textbf{UC} & \textbf{DFD} & \textbf{SD} & \textbf{ACT} & \textbf{CD} & \textbf{UI} & \textbf{ARCH} \\
+\hline
+\endhead
+FR-001 & User Registration & UC-01 & DFD-0 & SD-01 & ACT-02 & CD-01 & UI-01 & ARCH-01 \\
+\hline
+FR-002 & Admin Approval & UC-01 & DFD-1 & SD-01 & ACT-02 & CD-01 & UI-02 & ARCH-01 \\
+\hline
+FR-003 & Player Login & UC-01 & DFD-0 & SD-02 & — & CD-01 & UI-03 & ARCH-01 \\
+\hline
+FR-004 & Admin Login & UC-01 & DFD-0 & SD-02 & ACT-03 & CD-01 & UI-04 & ARCH-01 \\
+\hline
+FR-005 & Password Reset & UC-01 & DFD-1 & SD-03 & — & CD-01 & UI-05 & ARCH-01 \\
+\hline
+FR-006 & Session Management & UC-01 & DFD-0 & SD-02 & — & CD-01 & UI-03 & ARCH-01 \\
+\hline
+\end{longtable}
+
+\subsection{Player Module}
+
+\begin{longtable}{|p{1cm}|p{3cm}|p{0.7cm}|p{0.8cm}|p{0.7cm}|p{0.7cm}|p{0.7cm}|p{0.7cm}|p{0.9cm}|}
+\caption{Traceability - Player Module} \\
+\hline
+\textbf{ID} & \textbf{Requirement} & \textbf{UC} & \textbf{DFD} & \textbf{SD} & \textbf{ACT} & \textbf{CD} & \textbf{UI} & \textbf{ARCH} \\
+\hline
+\endfirsthead
+\hline
+\textbf{ID} & \textbf{Requirement} & \textbf{UC} & \textbf{DFD} & \textbf{SD} & \textbf{ACT} & \textbf{CD} & \textbf{UI} & \textbf{ARCH} \\
+\hline
+\endhead
+FR-007 & Player Dashboard & UC-01 & DFD-0 & — & — & CD-01 & UI-06 & ARCH-01 \\
+\hline
+FR-008 & Profile Management & UC-01 & DFD-1 & — & ACT-01 & CD-01 & UI-07 & ARCH-01 \\
+\hline
+FR-009 & Simulation Navigation & UC-01 & DFD-0 & SD-04 & ACT-05 & CD-01 & UI-08 & ARCH-01 \\
+\hline
+FR-010 & Simulation Viewing & UC-01 & DFD-2 & SD-04 & ACT-05 & CD-01 & UI-09 & ARCH-01 \\
+\hline
+FR-011 & Performance Tracking & UC-01 & DFD-2 & SD-04 & ACT-04 & CD-01 & UI-06 & ARCH-01 \\
+\hline
+FR-012 & Statistics Visualization & UC-01 & DFD-1 & — & ACT-04 & CD-01 & UI-10 & ARCH-01 \\
+\hline
+FR-013 & Help Desk Submission & UC-01 & DFD-1 & SD-05 & ACT-07 & CD-01 & UI-11 & ARCH-01 \\
+\hline
+FR-014 & Ticket Tracking & UC-01 & DFD-1 & SD-06 & ACT-07 & CD-01 & UI-12 & ARCH-01 \\
+\hline
+FR-015 & Event Viewing & UC-01 & DFD-1 & SD-07 & ACT-08 & CD-01 & UI-13 & ARCH-01 \\
+\hline
+\end{longtable}
+
+\subsection{Admin Module}
+
+\begin{longtable}{|p{1cm}|p{3cm}|p{0.7cm}|p{0.8cm}|p{0.7cm}|p{0.7cm}|p{0.7cm}|p{0.7cm}|p{0.9cm}|}
+\caption{Traceability - Admin Module} \\
+\hline
+\textbf{ID} & \textbf{Requirement} & \textbf{UC} & \textbf{DFD} & \textbf{SD} & \textbf{ACT} & \textbf{CD} & \textbf{UI} & \textbf{ARCH} \\
+\hline
+\endfirsthead
+\hline
+\textbf{ID} & \textbf{Requirement} & \textbf{UC} & \textbf{DFD} & \textbf{SD} & \textbf{ACT} & \textbf{CD} & \textbf{UI} & \textbf{ARCH} \\
+\hline
+\endhead
+FR-016 & Admin Dashboard & UC-01 & DFD-0 & — & ACT-03 & CD-01 & UI-14 & ARCH-01 \\
+\hline
+FR-017 & User List Management & UC-01 & DFD-1 & SD-08 & ACT-03 & CD-01 & UI-15 & ARCH-01 \\
+\hline
+FR-018 & View User Profile & UC-01 & DFD-1 & SD-08 & ACT-03 & CD-01 & UI-16 & ARCH-01 \\
+\hline
+FR-019 & Upload Content & UC-01 & DFD-2 & SD-09 & ACT-06 & CD-01 & UI-17 & ARCH-01 \\
+\hline
+FR-020 & Edit Content & UC-01 & DFD-2 & SD-09 & ACT-06 & CD-01 & UI-18 & ARCH-01 \\
+\hline
+FR-021 & Help Desk Management & UC-01 & DFD-2 & SD-06 & ACT-07 & CD-01 & UI-19 & ARCH-01 \\
+\hline
+FR-022 & Event Management & UC-01 & DFD-2 & SD-07 & ACT-08 & CD-01 & UI-20 & ARCH-01 \\
+\hline
+FR-023 & Analytics \& Reporting & UC-01 & DFD-2 & — & ACT-04 & CD-01 & UI-21 & ARCH-01 \\
+\hline
+\end{longtable}
+
+\clearpage
+
+% ==================== 6. PROTOTYPE OVERVIEW ====================
+\section{Prototype Overview}
+
+\subsection{Paper Prototype}
+
+Presented paper-based prototype in first RP meeting showing main interfaces and workflows. Feedback validated navigation structure.
+
+\subsection{Figma Prototype}
+
+Interactive prototype: \url{https://figma.com/your-prototype-link}
+
+\subsection{Screenshots}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{poe.JPG}
+    \caption{Landing Page}
+\end{figure}
+
+\clearpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Registration page.JPG}
+    \caption{Registration Form}
+\end{figure}
+
+\clearpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Player dash.JPG}
+    \caption{Player Dashboard}
+\end{figure}
+
+\clearpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{SIMULATE.JPG}
+    \caption{Simulation Viewer}
+\end{figure}
+
+\clearpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{p.JPG}
+    \caption{Admin Dashboard}
+\end{figure}
+
+\subsection{Meeting Documentation}
+
+\textbf{Meeting 1:} Paper prototype presentation \\
+\textbf{Meeting 2:} Figma prototype demonstration \\
+\textbf{Videos \& Minutes:} Available in GitHub repository
+
+\clearpage
+
+% ==================== 7. PROJECT LINKS ====================
+\section{Project Links}
+
+\textbf{GitHub Repository:} \url{https://github.com/MJamalAhmadKhan/Namal-Criko.git}
+
+\textbf{Figma Prototype:} \url{https://www.figma.com/proto/iL4ZUEg8pJlOrQeghJq0av/Untitled}
+
+\end{document}
